@@ -24,6 +24,7 @@
   <mat-divider></mat-divider>
   <mat-list>
     <mat-list-item *ngFor="let spell of applyFilter()" class="spell">
+      <mat-divider></mat-divider>
       <mat-action-list matLine>
         {{spell.spell}}
         <button *ngIf="!checkSpellLocal(spell._id)" (click)="addSpellLocal(spell._id)" mat-flat-button color="accent"><fa-icon [icon]="['fas', 'plus']"></fa-icon> LOCAL FAVOURITES</button>
@@ -32,8 +33,8 @@
         <button *ngIf="authService.isLoggedIn() && checkSpellOnline(spell._id)" (click)="removeSpellOnline(spell._id)" mat-flat-button color="accent"><fa-icon [icon]="['fas', 'minus']"></fa-icon> ONLINE FAVOURITES</button>
       </mat-action-list>
       <mat-list matLine>
-        <mat-list-item>Type: {{spell.type}}</mat-list-item>
-        <mat-list-item>Effect: {{spell.effect}}</mat-list-item>
+        <mat-list-item><p>Type: {{spell.type}}</p></mat-list-item>
+        <mat-list-item><p class="second">Effect: {{spell.effect}}</p></mat-list-item>
       </mat-list>
     </mat-list-item>
   </mat-list>
