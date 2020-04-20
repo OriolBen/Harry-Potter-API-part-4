@@ -24,7 +24,6 @@
   <mat-divider></mat-divider>
   <mat-list>
     <mat-list-item *ngFor="let spell of applyFilter()" class="spell">
-      <mat-divider></mat-divider>
       <mat-action-list matLine>
         {{spell.spell}}
         <button *ngIf="!checkSpellLocal(spell._id)" (click)="addSpellLocal(spell._id)" mat-flat-button color="accent"><fa-icon [icon]="['far', 'star']"></fa-icon> LOCAL</button>
