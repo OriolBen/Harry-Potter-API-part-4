@@ -1,3 +1,5 @@
+<!--
+
 <div>
   <a routerLink="">
     <img src="https://cdn.jsdelivr.net/gh/OriolBen/Harry-Potter-API-part-3@master/src/app/assets/hogwarts.png">
@@ -13,3 +15,24 @@
   </div>
 </div>
 <hr>
+
+-->
+
+<mat-toolbar>
+  
+  <a routerLink="">
+    <img src="https://cdn.jsdelivr.net/gh/OriolBen/Harry-Potter-API-part-3@master/src/app/assets/hogwarts.png" width="80px">
+  </a>
+  <a routerLink="">
+    <h1>Harry Potter API</h1>
+  </a>
+  <span class="fill"></span>
+  <div *ngIf="!logged">
+    <button routerLink="/login">Login</button>
+    <button routerLink="/register">Register</button>
+  </div>
+  <div *ngIf="logged">
+    <p>Welcome back, {{authService.userDetails.email}}</p>
+    <button (click)="authService.logout()">Logout</button>
+  </div>
+</mat-toolbar>
