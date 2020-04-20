@@ -1,81 +1,107 @@
 <div>
   <h2>Characters</h2>
-  <button (click)="updateFilter('none')">All Characters</button>
-  <p>
-    <input (keyup.enter)="updateFilter('name')" [(ngModel)]="temporaryName" placeholder="Characters by name">
-    <button (click)="updateFilter('name')">Search</button>
-  </p>
-  <p>House:
-    <select [(ngModel)]="temporaryFilters['house']">
-      <option value="Ignore" selected>Ignore</option>
-      <option value="Gryffindor">Gryffindor</option>
-      <option value="Ravenclaw">Ravenclaw</option>
-      <option value="Slytherin">Slytherin</option>
-      <option value="Hufflepuff">Hufflepuff</option>
-    </select>
-  </p>
-  <p>Blood Status:
-    <select [(ngModel)]="temporaryFilters['bloodStatus']">
-      <option value="Ignore" selected>Ignore</option>
-      <option value="pure-blood">Pure-blood</option>
-      <option value="half-blood">Half-blood</option>
-      <option value="muggle-born">Muggle-born</option>
-      <option value="unknown">Unknown</option>
-    </select>
-  </p>
-  <p>Death Eater:
-    <select [(ngModel)]="temporaryFilters['deathEater']">
-      <option value="Ignore" selected>Ignore</option>
-      <option value="true">Yes</option>
-      <option value="false">No</option>
-    </select>
-  </p>
-  <p>Dumbledore's Army:
-    <select [(ngModel)]="temporaryFilters['dumbledoresArmy']">
-      <option value="Ignore" selected>Ignore</option>
-      <option value="true">Yes</option>
-      <option value="false">No</option>
-    </select>
-  </p>
-  <p>Order of the Phoenix:
-    <select [(ngModel)]="temporaryFilters['orderOfThePhoenix']">
-      <option value="Ignore" selected>Ignore</option>
-      <option value="true">Yes</option>
-      <option value="false">No</option>
-    </select>
-  </p>
-  <p>Ministry of Magic:
-    <select [(ngModel)]="temporaryFilters['ministryOfMagic']">
-      <option value="Ignore" selected>Ignore</option>
-      <option value="true">Yes</option>
-      <option value="false">No</option>
-    </select>
-  </p>
-  <button (click)="updateFilter('custom')">Custom search</button>
-  <ul>
-    <li *ngFor="let character of applyFilter()">
-      <a [routerLink]="['/characters', character._id]">{{character.name}}</a>
-      <button *ngIf="!checkCharacterLocal(character._id)" (click)="addCharacterLocal(character._id)">Add to local favourites</button>
-      <button *ngIf="checkCharacterLocal(character._id)" (click)="removeCharacterLocal(character._id)">Remove from local favourites</button>
-      <button *ngIf="authService.isLoggedIn() && !checkCharacterOnline(character._id)" (click)="addCharacterOnline(character._id)">Add to online favourites</button>
-      <button *ngIf="authService.isLoggedIn() && checkCharacterOnline(character._id)" (click)="removeCharacterOnline(character._id)">Remove from online favourites</button>
-      <ul>
-        <li *ngIf="check(character.house)">House: <a [routerLink]="['/houses', house(character.house)]">{{character.house}}</a></li>
-        <li *ngIf="check(character.patronus)">Patronus: {{character.patronus}}</li>
-        <li *ngIf="check(character.species)">Species: {{character.species}}</li>
-        <li *ngIf="check(character.bloodStatus)">Blood Status: {{character.bloodStatus}}</li>
-        <li *ngIf="check(character.role)">Role: {{character.role}}</li>
-        <li *ngIf="check(character.school)">School: {{character.school}}</li>
-        <li *ngIf="check(character.deathEater)">Death Eater: {{character.deathEater}}</li>
-        <li *ngIf="check(character.dumbledoresArmy)">Dumbledore's Army: {{character.dumbledoresArmy}}</li>
-        <li *ngIf="check(character.orderOfThePhoenix)">Order of the Phoenix: {{character.orderOfThePhoenix}}</li>
-        <li *ngIf="check(character.ministryOfMagic)">Ministry of Magic: {{character.ministryOfMagic}}</li>
-        <li *ngIf="check(character.alias)">Alias: {{character.alias}}</li>
-        <li *ngIf="check(character.wand)">Wand: {{character.wand}}</li>
-        <li *ngIf="check(character.boggart)">Boggart: {{character.boggart}}</li>
-        <li *ngIf="check(character.animagus)">Animagus: {{character.animagus}}</li>
-      </ul>
-    </li>
-  </ul>
+  <button mat-flat-button color="accent" (click)="updateFilter('none')"><fa-icon [icon]="['fas', 'hat-wizard']"></fa-icon> ALL CHARACTERS</button>
+  <div id="down">
+    <mat-form-field>
+      <mat-label>Characters by name</mat-label>
+      <input matInput type="text" (keyup.enter)="updateFilter('name')" [(ngModel)]="temporaryName" placeholder="Characters by name">
+    </mat-form-field>
+    <button mat-flat-button color="accent" (click)="updateFilter('name')"><fa-icon [icon]="['fas', 'search']"></fa-icon> SEARCH</button>
+  </div>
+  <h3>Filters</h3>
+  <div>
+    <mat-form-field>
+      <mat-label>House</mat-label>
+      <mat-select [(ngModel)]="temporaryFilters['house']">
+        <mat-option value="Ignore" selected>Ignore</mat-option>
+        <mat-option value="Gryffindor">Gryffindor</mat-option>
+        <mat-option value="Ravenclaw">Ravenclaw</mat-option>
+        <mat-option value="Slytherin">Slytherin</mat-option>
+        <mat-option value="Hufflepuff">Hufflepuff</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+  <div>
+    <mat-form-field>
+      <mat-label>Blood Status</mat-label>
+      <mat-select [(ngModel)]="temporaryFilters['bloodStatus']">
+        <mat-option value="Ignore" selected>Ignore</mat-option>
+        <mat-option value="pure-blood">Pure-blood</mat-option>
+        <mat-option value="half-blood">Half-blood</mat-option>
+        <mat-option value="muggle-born">Muggle-born</mat-option>
+        <mat-option value="unknown">Unknown</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+  <div>
+    <mat-form-field>
+      <mat-label>Death Eater</mat-label>
+      <mat-select [(ngModel)]="temporaryFilters['deathEater']">
+        <mat-option value="Ignore" selected>Ignore</mat-option>
+        <mat-option value="true">Yes</mat-option>
+        <mat-option value="false">No</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+  <div>
+    <mat-form-field>
+      <mat-label>Dumbledore's Army</mat-label>
+      <mat-select [(ngModel)]="temporaryFilters['dumbledoresArmy']">
+        <mat-option value="Ignore" selected>Ignore</mat-option>
+        <mat-option value="true">Yes</mat-option>
+        <mat-option value="false">No</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+  <div>
+    <mat-form-field>
+      <mat-label>Order of the Phoenix</mat-label>
+      <mat-select [(ngModel)]="temporaryFilters['orderOfThePhoenix']">
+        <mat-option value="Ignore" selected>Ignore</mat-option>
+        <mat-option value="true">Yes</mat-option>
+        <mat-option value="false">No</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+  <div>
+    <mat-form-field>
+      <mat-label>Ministry of Magic</mat-label>
+      <mat-select [(ngModel)]="temporaryFilters['ministryOfMagic']">
+        <mat-option value="Ignore" selected>Ignore</mat-option>
+        <mat-option value="true">Yes</mat-option>
+        <mat-option value="false">No</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+  <button mat-flat-button color="accent" (click)="updateFilter('custom')"><fa-icon [icon]="['fas', 'search']"></fa-icon> SEARCH</button>
+  <mat-divider></mat-divider>
+  <mat-list>
+    <mat-list-item *ngFor="let character of applyFilter()" class="character">
+      <mat-divider></mat-divider>
+      <mat-action-list matLine>
+        <a [routerLink]="['/characters', character._id]">{{character.name}}</a>
+        <button *ngIf="!checkCharacterLocal(character._id)" class="right" mat-flat-button color="accent" (click)="addCharacterLocal(character._id)"><fa-icon [icon]="['far', 'star']"></fa-icon> LOCAL</button>
+        <button *ngIf="checkCharacterLocal(character._id)" class="right" mat-flat-button color="accent" (click)="removeCharacterLocal(character._id)"><fa-icon [icon]="['fas', 'star']"></fa-icon> LOCAL</button>
+        <button *ngIf="authService.isLoggedIn() && !checkCharacterOnline(character._id)" mat-flat-button color="accent" (click)="addCharacterOnline(character._id)"><fa-icon [icon]="['far', 'star']"></fa-icon> ONLINE</button>
+        <button *ngIf="authService.isLoggedIn() && checkCharacterOnline(character._id)" mat-flat-button color="accent" (click)="removeCharacterOnline(character._id)"><fa-icon [icon]="['fas', 'star']"></fa-icon> ONLINE</button>
+      </mat-action-list>
+      <mat-list matLine>
+        <mat-list-item *ngIf="check(character.house)"><pre class="mat-body">House: </pre><a [routerLink]="['/houses', link]">{{character.house}}</a></mat-list-item>
+        <mat-list-item *ngIf="check(character.patronus)">Patronus: {{character.patronus}}</mat-list-item>
+        <mat-list-item *ngIf="check(character.species)">Species: {{character.species}}</mat-list-item>
+        <mat-list-item *ngIf="check(character.bloodStatus)">Blood Status: {{character.bloodStatus}}</mat-list-item>
+        <mat-list-item *ngIf="check(character.role)">Role: {{character.role}}</mat-list-item>
+        <mat-list-item *ngIf="check(character.school)">School: {{character.school}}</mat-list-item>
+        <mat-list-item *ngIf="check(character.deathEater)">Death Eater: {{character.deathEater}}</mat-list-item>
+        <mat-list-item *ngIf="check(character.dumbledoresArmy)">Dumbledore's Army: {{character.dumbledoresArmy}}</mat-list-item>
+        <mat-list-item *ngIf="check(character.orderOfThePhoenix)">Order of the Phoenix: {{character.orderOfThePhoenix}}</mat-list-item>
+        <mat-list-item *ngIf="check(character.ministryOfMagic)">Ministry of Magic: {{character.ministryOfMagic}}</mat-list-item>
+        <mat-list-item *ngIf="check(character.alias)">Alias: {{character.alias}}</mat-list-item>
+        <mat-list-item *ngIf="check(character.wand)">Wand: {{character.wand}}</mat-list-item>
+        <mat-list-item *ngIf="check(character.boggart)">Boggart: {{character.boggart}}</mat-list-item>
+        <mat-list-item *ngIf="check(character.animagus)">Animagus: {{character.animagus}}</mat-list-item>
+      </mat-list>
+    </mat-list-item>
+  </mat-list>
   <h2 *ngIf="filtered.length == 0">No characters were found!</h2>
 </div>

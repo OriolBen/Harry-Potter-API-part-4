@@ -1,0 +1,26 @@
+.right {
+  margin-right: 10px;
+}
+
+a {
+  text-decoration-line: none;
+  color: #DAC137;
+}
+
+p {
+  margin-bottom: 0px;
+}
+
+div {
+  text-align: center;
+}
+
+mat-list * {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+pre {
+  font-size: 16px;
+}

@@ -12,10 +12,10 @@
         <input matInput type="password" placeholder="Password" name="password" [(ngModel)]="password" required/>
       </mat-form-field>
       <p><a id="reset" routerLink="/reset"><fa-icon [icon]="['fas', 'lock']"></fa-icon> Forgot password?</a></p>
-      <p>
+      <div id="move">
         <button mat-flat-button color="accent"><fa-icon [icon]="['fas', 'sign-in-alt']"></fa-icon> LOGIN</button>
         <a routerLink="/login"><button mat-flat-button color="accent" (click)="authService.signInGoogle()"><fa-icon [icon]="['fab', 'google']"></fa-icon> LOGIN</button></a>
-      </p>
+      </div>
     </form>
   </div>
 </div>

@@ -9,9 +9,9 @@ h2 {
   text-align: center;
 }
 
-p {
-  margin-left: -5px;
-  margin-right: 5px;
+#move {
+  margin-left: 5px;
+  margin-right: -5px;
 }
 
 button:first-child {
