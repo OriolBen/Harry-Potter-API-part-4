@@ -47,3 +47,11 @@ mat-toolbar > mat-toolbar-row > span > p {
   position: fixed;
   top: 0;
 }
+
+#bottom {
+  position: absolute;
+  bottom: 10px;
+	left: 50%;
+  transform: translate(-50%, 0);
+  width: 90%;
+}
