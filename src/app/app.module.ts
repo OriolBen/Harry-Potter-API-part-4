@@ -36,6 +36,11 @@ import { AccountComponent } from './components/account/account.component'
 import { MaterialModule } from './material.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
+// Font Awesome
+import { FontAwesomeModule, FaIconLibrary } from '@fortawesome/angular-fontawesome';
+import { fas } from '@fortawesome/free-solid-svg-icons';
+import { far } from '@fortawesome/free-regular-svg-icons';
+
 @NgModule({
   imports: [
     BrowserModule,
@@ -54,7 +59,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     }),
     AngularFireDatabaseModule,
     BrowserAnimationsModule,
-    MaterialModule
+    MaterialModule,
+    FontAwesomeModule
   ],
   declarations: [ 
     AppComponent,
@@ -83,4 +89,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
   ]
 })
 
-export class AppModule { }
+export class AppModule {
+  constructor(library: FaIconLibrary) {
+    library.addIconPacks(fas, far);
+  }
+}

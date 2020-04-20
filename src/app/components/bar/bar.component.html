@@ -27,11 +27,11 @@
   </a>
   <span class="fill"></span>
   <div *ngIf="!logged">
-    <button mat-flat-button color="accent" routerLink="/login">LOGIN</button>
-    <button mat-flat-button color="accent" routerLink="/register">REGISTER</button>
+    <button mat-flat-button color="accent" routerLink="/login"><fa-icon [icon]="['fas', 'sign-in-alt']"></fa-icon> LOGIN</button>
+    <button mat-flat-button color="accent" routerLink="/register"><fa-icon [icon]="['fas', 'user-plus']"></fa-icon> REGISTER</button>
   </div>
   <div *ngIf="logged">
     <p>{{authService.userDetails.email}}</p>
-    <button mat-flat-button color="accent" routerLink="/register" (click)="authService.logout()">LOGOUT</button>
+    <button mat-flat-button color="accent" routerLink="/register" (click)="authService.logout()"><fa-icon [icon]="['fas', 'sign-out-alt']"></fa-icon> LOGOUT</button>
   </div>
 </mat-toolbar>
