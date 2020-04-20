@@ -1,12 +1,12 @@
 <mat-toolbar>
   <a routerLink=""><img src="https://cdn.jsdelivr.net/gh/OriolBen/Harry-Potter-API-part-3@master/src/app/assets/hogwarts.png" width="50px"></a>
   <a routerLink=""><h1 class="mat-display-h1">Harry Potter API</h1></a>
-  <span class="fill"></span>
+  <span id="fill"></span>
   <div *ngIf="!logged">
     <button mat-flat-button color="accent" routerLink="/login"><fa-icon [icon]="['fas', 'sign-in-alt']"></fa-icon> LOGIN</button>
     <button mat-flat-button color="accent" routerLink="/register"><fa-icon [icon]="['fas', 'user-plus']"></fa-icon> REGISTER</button>
   </div>
-  <div *ngIf="logged">
+  <div *ngIf="logged" id="small"> 
     <p><fa-icon [icon]="['fas', 'user']"></fa-icon> {{authService.userDetails.email}}</p>
     <button id="logout" mat-flat-button color="accent" routerLink="/register" (click)="authService.logout()"><fa-icon [icon]="['fas', 'sign-out-alt']"></fa-icon> LOGOUT</button>
   </div>

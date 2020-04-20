@@ -2,7 +2,7 @@ h1 {
   margin-left: 10px;
 }
 
-.fill {
+#fill {
   flex: 1 1 auto;
 }
 
@@ -26,5 +26,15 @@ p {
 }
 
 #logout {
+  line-height: 20px;
+  padding: 0px;
   float: right;
+}
+
+#small * {
+  font-size: 10px;
+}
+
+img {
+  margin-top: 10px;
 }
