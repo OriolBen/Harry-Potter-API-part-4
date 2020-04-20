@@ -1,7 +1,12 @@
 <div>
   <h2>Reset password email</h2>
-  <form (ngSubmit)="authService.resetPasswordEmail(email)">
-    <p><input type="text" placeholder="Email" name="email" [(ngModel)]="email" required></p>
-		<p><button>Send</button></p>
-	</form>
+  <div>
+    <form (ngSubmit)="authService.resetPasswordEmail(email)">
+      <mat-form-field>
+        <mat-label><fa-icon [icon]="['fas', 'envelope']"></fa-icon> Email</mat-label>
+        <input matInput type="text" placeholder="Email" name="email" [(ngModel)]="email" required/>
+      </mat-form-field>
+      <p><button mat-flat-button color="accent"><fa-icon [icon]="['fas', 'paper-plane']"></fa-icon> SEND</button></p>
+    </form>
+  </div>
 </div>

@@ -11,12 +11,16 @@ import { AuthenticationService } from '../../services/authentication.service'
 export class AccountComponent implements OnInit {
   password : string = ""
   verified : boolean = false
+  mode : string = ""
+  oobCode : string = ""
 
   constructor(private authService : AuthenticationService, private route : ActivatedRoute, private router : Router) {}
 
   ngOnInit() {
     this.route.queryParams.subscribe(params => {
-      this.authService.checkOobCode(params['mode'], params['oobCode'])
+      this.mode = params['mode']
+      this.oobCode = params['oobCode']
+      this.authService.checkOobCode(this.mode, this.oobCode)
     })
   }
 }

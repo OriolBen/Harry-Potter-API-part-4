@@ -2,9 +2,10 @@ div > div {
   display: flex;
   justify-content: center;
   align-items: center;
+  text-align: center;
 }
 
-h2, p {
+h2 {
   text-align: center;
 }
 
