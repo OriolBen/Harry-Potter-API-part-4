@@ -21,4 +21,9 @@ export class AppComponent {
       })
     })
   }
+
+  logout(sidenav : any) : void {
+    sidenav.toggle()
+    this.authService.logout()
+  }
 }

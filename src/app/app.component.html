@@ -2,16 +2,16 @@
   <mat-sidenav #sidenav>
     <mat-toolbar>
       <mat-toolbar-row *ngIf="!logged">
-        <button id="space" mat-flat-button color="accent" routerLink="/login"><fa-icon [icon]="['fas', 'sign-in-alt']"></fa-icon> LOGIN</button>
+        <button id="space" mat-flat-button color="accent" routerLink="/login" (click)="sidenav.toggle()"><fa-icon [icon]="['fas', 'sign-in-alt']"></fa-icon> LOGIN</button>
       </mat-toolbar-row>
       <mat-toolbar-row *ngIf="!logged">
-        <button mat-flat-button color="accent" routerLink="/register"><fa-icon [icon]="['fas', 'user-plus']"></fa-icon> REGISTER</button>
+        <button mat-flat-button color="accent" routerLink="/register" (click)="sidenav.toggle()"><fa-icon [icon]="['fas', 'user-plus']"></fa-icon> REGISTER</button>
       </mat-toolbar-row>
       <mat-toolbar-row *ngIf="logged" class="mat-caption">
         <p><fa-icon [icon]="['fas', 'user']"></fa-icon> {{authService.userDetails.email}}</p>
       </mat-toolbar-row>
       <mat-toolbar-row *ngIf="logged">
-        <button id="logout" mat-flat-button color="accent" routerLink="/register" (click)="authService.logout()"><fa-icon [icon]="['fas', 'sign-out-alt']"></fa-icon> LOGOUT</button>
+        <button id="logout" mat-flat-button color="accent" routerLink="/register" (click)="logout(sidenav)"><fa-icon [icon]="['fas', 'sign-out-alt']"></fa-icon> LOGOUT</button>
       </mat-toolbar-row>
     </mat-toolbar>
   </mat-sidenav>
