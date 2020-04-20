@@ -18,7 +18,7 @@ export class LoginComponent {
   ngOnInit() {
     this.authService.afAuth.auth.onAuthStateChanged((user) => {
       if (user != null) {
-        this.snackBar.open("You are already logged in", "OK")
+        this.snackBar.open("You are already logged in", "", { duration: 3000 })
         this.ngZone.run(() => this.router.navigate([""]))
       }
     })
