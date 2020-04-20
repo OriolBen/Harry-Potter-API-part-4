@@ -16,3 +16,13 @@ a {
   text-decoration-line: none;
   color: white;
 }
+
+button:first-child {
+  margin-right: 10px;
+}
+
+p {
+  font-size: 16px;
+  margin-bottom: 0px;
+  margin-top: 0px;
+}
