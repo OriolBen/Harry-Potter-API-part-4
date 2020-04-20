@@ -1,0 +1,24 @@
+.spell {
+  margin-top: 100px;
+}
+
+.spell:first-child {
+  margin-top: 25px;
+}
+
+button:first-child {
+  margin-right: 10px;
+}
+
+div {
+  text-align: center;
+}
+
+mat-list {
+  justify-content: center;
+}
+
+mat-divider {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}

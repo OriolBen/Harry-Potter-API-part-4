@@ -1,32 +1,38 @@
 <div>
   <h2>Spells</h2>
   <button (click)="updateFilter('none')">All spells</button>
-  <p>
-    <select (change)="updateFilter('type')" [(ngModel)]="option">
-      <option value="" disabled selected>Spells by type</option>
-      <option value="Charm">Charm</option>
-      <option value="Curse">Curse</option>
-      <option value="Enchantment">Enchantment</option>
-      <option value="Hex">Hex</option>
-      <option value="Jinx">Jinx</option>
-      <option value="Spell">Spell</option>
-    </select>
-  </p>
-  <p>
+  <div>
+    <mat-form-field>
+      <mat-select (ngModelChange)="updateFilter('type')" [(ngModel)]="option">
+        <mat-option value="" disabled selected>Spells by type</mat-option>
+        <mat-option value="Charm">Charm</mat-option>
+        <mat-option value="Curse">Curse</mat-option>
+        <mat-option value="Enchantment">Enchantment</mat-option>
+        <mat-option value="Hex">Hex</mat-option>
+        <mat-option value="Jinx">Jinx</mat-option>
+        <mat-option value="Spell">Spell</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+  <div>
     <input (keyup.enter)="updateFilter('name')" [(ngModel)]="temporaryName" placeholder="Spells by name">
     <button (click)="updateFilter('name')">Search</button>
-  </p>
-  <ul>
-    <li *ngFor="let spell of applyFilter()">{{spell.spell}}
-      <button *ngIf="!checkSpellLocal(spell._id)" (click)="addSpellLocal(spell._id)">Add to local favourites</button>
-      <button *ngIf="checkSpellLocal(spell._id)" (click)="removeSpellLocal(spell._id)">Remove from local favourites</button>
-      <button *ngIf="authService.isLoggedIn() && !checkSpellOnline(spell._id)" (click)="addSpellOnline(spell._id)">Add to online favourites</button>
-      <button *ngIf="authService.isLoggedIn() && checkSpellOnline(spell._id)" (click)="removeSpellOnline(spell._id)">Remove from online favourites</button>
-      <ul>
-        <li>Type: {{spell.type}}</li>
-        <li>Effect: {{spell.effect}}</li>
-      </ul>
-    </li>
-  </ul>
+  </div>
+  <mat-divider></mat-divider>
+  <mat-list>
+    <mat-list-item *ngFor="let spell of applyFilter()" class="spell">
+      <mat-action-list matLine>
+        {{spell.spell}}
+        <button *ngIf="!checkSpellLocal(spell._id)" (click)="addSpellLocal(spell._id)" mat-flat-button color="accent"><fa-icon [icon]="['fas', 'plus']"></fa-icon> LOCAL FAVOURITES</button>
+        <button *ngIf="checkSpellLocal(spell._id)" (click)="removeSpellLocal(spell._id)" mat-flat-button color="accent"><fa-icon [icon]="['fas', 'minus']"></fa-icon> LOCAL FAVOURITES</button>
+        <button *ngIf="authService.isLoggedIn() && !checkSpellOnline(spell._id)" (click)="addSpellOnline(spell._id)" mat-flat-button color="accent"><fa-icon [icon]="['fas', 'plus']"></fa-icon> ONLINE FAVOURITES</button>
+        <button *ngIf="authService.isLoggedIn() && checkSpellOnline(spell._id)" (click)="removeSpellOnline(spell._id)" mat-flat-button color="accent"><fa-icon [icon]="['fas', 'minus']"></fa-icon> ONLINE FAVOURITES</button>
+      </mat-action-list>
+      <mat-list matLine>
+        <mat-list-item>Type: {{spell.type}}</mat-list-item>
+        <mat-list-item>Effect: {{spell.effect}}</mat-list-item>
+      </mat-list>
+    </mat-list-item>
+  </mat-list>
   <h2 *ngIf="filtered.length == 0">No spells were found!</h2>
 </div>
