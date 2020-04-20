@@ -6,6 +6,10 @@
   margin-top: 25px;
 }
 
+.spell:last-child {
+  margin-bottom: 50px;
+}
+
 button:first-child {
   margin-right: 10px;
 }
@@ -21,4 +25,8 @@ mat-list {
 mat-divider {
   margin-top: 10px;
   margin-bottom: 10px;
+}
+
+div > button {
+  margin-left: 10px;
 }

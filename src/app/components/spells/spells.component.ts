@@ -31,6 +31,7 @@ export class SpellsComponent implements OnInit {
   }
 
   updateFilter(category : string) : void {
+    console.log("HERE")
     this.filter = category
     if (this.filter == "name") this.name = this.temporaryName
   }
