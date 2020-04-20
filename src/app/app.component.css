@@ -55,3 +55,11 @@ mat-toolbar > mat-toolbar-row > span > p {
   transform: translate(-50%, 0);
   width: 90%;
 }
+
+#wrapper {
+  min-height: calc(100vh - 65px);
+}
+
+#footer {
+  height: 65px;
+}

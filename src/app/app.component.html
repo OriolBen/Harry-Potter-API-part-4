@@ -1,4 +1,4 @@
-<mat-sidenav-container>
+<mat-sidenav-container [hasBackdrop]="false">
   <mat-sidenav #sidenav id="sticky">
     <mat-toolbar>
       <mat-toolbar-row *ngIf="!logged">
@@ -17,16 +17,18 @@
     </mat-toolbar>
   </mat-sidenav>
   <mat-sidenav-content>
-    <mat-toolbar>
-      <mat-toolbar-row id="center">
-        <button mat-icon-button (click)="sidenav.toggle()"><fa-icon [icon]="['fas', 'bars']" size="lg"></fa-icon></button>
-        <a routerLink=""><img src="https://cdn.jsdelivr.net/gh/OriolBen/Harry-Potter-API-part-4@master/src/app/assets/hogwarts-hq.png" width="50px"></a>
-        <a routerLink=""><h1 class="mat-display-h1">Harry Potter API</h1></a>
-      </mat-toolbar-row>
-    </mat-toolbar>
-    <router-outlet></router-outlet>
-    <mat-toolbar>
-      <mat-toolbar-row>
+    <div id="wrapper"> 
+      <mat-toolbar>
+        <mat-toolbar-row id="center">
+          <button mat-icon-button (click)="sidenav.toggle()"><fa-icon [icon]="['fas', 'bars']" size="lg"></fa-icon></button>
+          <a routerLink=""><img src="https://cdn.jsdelivr.net/gh/OriolBen/Harry-Potter-API-part-4@master/src/app/assets/hogwarts-hq.png" width="50px"></a>
+          <a routerLink=""><h1 class="mat-display-h1">Harry Potter API</h1></a>
+        </mat-toolbar-row>
+      </mat-toolbar>
+      <router-outlet></router-outlet>
+    </div>
+    <mat-toolbar id="footer">
+      <mat-toolbar-row >
         <span><p class="mat-small">© 2020 - Oriol Serrabassa & Vandame Hrustic</p></span>
       </mat-toolbar-row>
     </mat-toolbar>
