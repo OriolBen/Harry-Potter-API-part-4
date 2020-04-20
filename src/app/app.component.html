@@ -1,5 +1,5 @@
 <mat-sidenav-container>
-  <mat-sidenav #sidenav>
+  <mat-sidenav #sidenav id="sticky">
     <mat-toolbar>
       <mat-toolbar-row *ngIf="!logged">
         <button id="space" mat-flat-button color="accent" routerLink="/login" (click)="sidenav.toggle()"><fa-icon [icon]="['fas', 'sign-in-alt']"></fa-icon> LOGIN</button>

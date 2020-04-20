@@ -42,3 +42,8 @@ mat-toolbar > mat-toolbar-row > span > p {
   margin-top: 10px;
   margin-bottom: 10px;
 }
+
+#sticky {
+  position: fixed;
+  top: 0;
+}
