@@ -1,0 +1,44 @@
+mat-toolbar:first-child {
+  height: 75px;
+}
+
+a {
+  text-decoration-line: none;
+  color: white;
+}
+
+mat-toolbar > div > button:first-child {
+  margin-right: 10px;
+}
+
+mat-toolbar > div > p {
+  font-size: 16px;
+  margin-bottom: 0px;
+  margin-top: 0px;
+}
+
+mat-toolbar > a > img {
+  margin-top: 10px;
+}
+
+mat-toolbar > mat-toolbar-row > span {
+  margin: auto;
+}
+
+mat-toolbar > mat-toolbar-row > span > p {
+  margin-top: 15px;
+}
+
+#center {
+  justify-content: center;
+  margin-top: 10px;
+}
+
+#center > a {
+  margin-right: 10px;
+}
+
+#space {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}

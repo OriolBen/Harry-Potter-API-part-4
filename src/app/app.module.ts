@@ -24,11 +24,9 @@ import { CharacterComponent } from './components/character/character.component'
 import { HousesComponent } from './components/houses/houses.component'
 import { HouseComponent } from './components/house/house.component'
 import { SpellsComponent } from './components/spells/spells.component'
-import { FooterComponent } from './components/footer/footer.component'
 import { FavouritesComponent } from './components/favourites/favourites.component'
 import { LoginComponent } from './components/login/login.component'
 import { RegisterComponent } from './components/register/register.component'
-import { BarComponent } from './components/bar/bar.component'
 import { ResetComponent } from './components/reset/reset.component'
 import { AccountComponent } from './components/account/account.component'
 
@@ -71,11 +69,9 @@ import { fab } from '@fortawesome/free-brands-svg-icons'
     SpellsComponent,
     CharacterComponent,
     HouseComponent,
-    FooterComponent,
     FavouritesComponent,
     LoginComponent,
     RegisterComponent,
-    BarComponent,
     ResetComponent,
     AccountComponent
   ],

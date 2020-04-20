@@ -1,4 +1,5 @@
-import { Component } from '@angular/core'
+import { Component, OnInit, NgZone } from '@angular/core'
+import { AuthenticationService } from './services/authentication.service'
 
 @Component({
   selector : 'my-app',
@@ -6,4 +7,18 @@ import { Component } from '@angular/core'
   styleUrls : [ './app.component.css' ]
 })
 
-export class AppComponent {}
+export class AppComponent {
+  message : string = ""
+  logged : boolean = false
+
+  constructor(private ngZone: NgZone, public authService: AuthenticationService) {}
+
+  ngOnInit() {
+    this.authService.afAuth.auth.onAuthStateChanged((user) => {
+      this.ngZone.run(() => {
+        if (user != null) this.logged = true
+        else this.logged = false
+      })
+    })
+  }
+}
