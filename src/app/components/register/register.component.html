@@ -1,26 +1,17 @@
-<!--
-
 <div>
-	<h2>Register</h2>
-	<form (ngSubmit)="authService.signInRegular(email, password)">
-    <p><input type="text" placeholder="Email" name="email" [(ngModel)]="email" required></p>
-		<p><input type="password" placeholder="Password" name="password" [(ngModel)]="password" required></p>
-		<p><button>Register</button></p>
-	</form>
-</div>
-
--->
-<div>
-  <h2>Register</h2>
-  <form (ngSubmit)="authService.signInRegular(email, password)">
-    <mat-form-field class="full-width">
-      <mat-label><fa-icon [icon]="['fas', 'envelope']"></fa-icon> Email</mat-label>
-      <input matInput type="text" placeholder="Email" name="email" [(ngModel)]="email" required/>
-    </mat-form-field>
-    <mat-form-field class="full-width">
-      <mat-label><fa-icon [icon]="['fas', 'key']"></fa-icon> Password</mat-label>
-      <input matInput type="password" placeholder="Password" name="password" [(ngModel)]="password" required/>
-    </mat-form-field>
-    <p><button mat-flat-button color="accent"><fa-icon [icon]="['fas', 'user-plus']"></fa-icon> REGISTER</button></p>
-  </form>
+  <h2 class="mat-display-h2">Register</h2>
+  <div>
+    <form (ngSubmit)="authService.signInRegular(email, password)">
+      <mat-form-field>
+        <mat-label><fa-icon [icon]="['fas', 'envelope']"></fa-icon> Email</mat-label>
+        <input matInput type="text" placeholder="Email" name="email" [(ngModel)]="email" required/>
+      </mat-form-field>
+      <br>
+      <mat-form-field>
+        <mat-label><fa-icon [icon]="['fas', 'key']"></fa-icon> Password</mat-label>
+        <input matInput type="password" placeholder="Password" name="password" [(ngModel)]="password" required/>
+      </mat-form-field>
+      <p><button mat-flat-button color="accent"><fa-icon [icon]="['fas', 'user-plus']"></fa-icon> REGISTER</button></p>
+    </form>
+  </div>
 </div>
