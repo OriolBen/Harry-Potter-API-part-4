@@ -3,6 +3,7 @@ import { Router } from '@angular/router'
 import { AngularFireAuth } from '@angular/fire/auth'
 import { auth } from 'firebase/app'
 import { AngularFireDatabase } from '@angular/fire/database'
+import { MatSnackBar } from '@angular/material/snack-bar'
 
 @Injectable()
 
@@ -12,7 +13,7 @@ export class AuthenticationService {
   displayName : string = ""
   logged : boolean = false
 
-  constructor(private ngZone: NgZone, public afAuth : AngularFireAuth, private router : Router, private db : AngularFireDatabase) {
+  constructor(private ngZone: NgZone, public afAuth : AngularFireAuth, private router : Router, private db : AngularFireDatabase, private snackBar: MatSnackBar) {
     this.afAuth.auth.onAuthStateChanged((user) => {
       if (user == null) {
         this.userDetails = null
@@ -38,9 +39,9 @@ export class AuthenticationService {
           })
         }
       })
-      alert("Successful login.")
+      this.snackBar.open("Successful Google login", "", { duration: 3000 })
       this.ngZone.run(() => this.router.navigate([""]))
-    }).catch((e) => alert(e.message))
+    }).catch((e) => this.snackBar.open(e.message, "OK"))
   }
 
   signInRegular(email: string, password: string) {
@@ -56,9 +57,9 @@ export class AuthenticationService {
         }
       })
       this.afAuth.auth.currentUser.sendEmailVerification()
-      alert("Successful registration.\nPlease verify your email address.")
+      this.snackBar.open("Please verify your email address.", "", { duration: 3000 })
       this.ngZone.run(() => this.router.navigate([""]))
-    }).catch((e) => alert(e.message))
+    }).catch((e) => this.snackBar.open(e.message, "OK"))
   }
 
   loginRegular(email: string, password: string) {
@@ -66,11 +67,11 @@ export class AuthenticationService {
       this.logged = true
       if (result.user.emailVerified !== true) {
         this.afAuth.auth.currentUser.sendEmailVerification()
-        alert("Successful login.\nPlease verify your email address.")
+        this.snackBar.open("Sucessful login. Please verify your email address.", "", { duration: 3000 })
       }
-      else alert("Successful login.")
+      else this.snackBar.open("Successful login", "", { duration: 3000 })
       this.ngZone.run(() => this.router.navigate([""]))
-    }).catch((e) => alert(e.message))
+    }).catch((e) => this.snackBar.open(e.message, "OK"))
   }
 
   isLoggedIn() : boolean {
@@ -83,25 +84,29 @@ export class AuthenticationService {
   }
 
   resetPasswordEmail(email: string) { 
-    return this.afAuth.auth.sendPasswordResetEmail(email).then(() => alert('A password reset link has been sent to your email address'), (rejectionReason) => alert(rejectionReason)).catch(e => alert('An error occurred while attempting to reset your password')).then(() => this.ngZone.run(() => this.router.navigate([""])))
+    return this.afAuth.auth.sendPasswordResetEmail(email).then(() => this.snackBar.open("A password reset link has been sent to your email address", "", { duration: 3000 }), (rejectionReason) => this.snackBar.open(rejectionReason, "OK")).catch(e => this.snackBar.open("An error occurred while attempting to reset your password", "OK")).then(() => this.ngZone.run(() => this.router.navigate([""])))
   }
 
   checkOobCode(mode : string, oobCode : string) {
-    if (mode == "resetPassword") {
-      return this.afAuth.auth.verifyPasswordResetCode(oobCode).catch(e => {
-        alert(e.message)
+    switch(mode) {
+      case "resetPassword":
+        return this.afAuth.auth.verifyPasswordResetCode(oobCode).catch(e => {
+          this.snackBar.open(e.message, "OK")
+          this.ngZone.run(() => this.router.navigate([""]))
+        })
+      case "verifyEmail":
+        return this.afAuth.auth.applyActionCode(oobCode).then(() => this.snackBar.open("Email has been verified", "", { duration: 3000 })).catch(e => this.snackBar.open(e.message, "OK")).then(() => this.ngZone.run(() => this.router.navigate([""])))
+      default:
+        this.snackBar.open("URL is not valid", "OK")
         this.ngZone.run(() => this.router.navigate([""]))
-      })
-    }
-    else if (mode == "verifyEmail") {
-      return this.afAuth.auth.applyActionCode(oobCode).then(() => alert("Email has been verified")).catch(e => alert(e.message)).then(() => this.ngZone.run(() => this.router.navigate([""])))
+        break
     }
   }
 
   resetPassword(oobCode : string, password : string) {
     return this.afAuth.auth.confirmPasswordReset(oobCode, password).then(() => {
-      alert('New password has been saved')
+      this.snackBar.open("New password has been saved", "", { duration: 3000 })
       this.ngZone.run(() => this.router.navigate(["/login"]))
-    }).catch(e => alert(e.message))
+    }).catch(e => this.snackBar.open(e.message, "OK"))
   }
 }

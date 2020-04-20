@@ -16,3 +16,8 @@ p {
 button:first-child {
   margin-right: 10px;
 }
+
+#reset {
+  text-decoration-line: none;
+  color: white;
+}

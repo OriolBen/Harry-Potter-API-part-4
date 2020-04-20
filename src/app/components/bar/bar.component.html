@@ -8,6 +8,6 @@
   </div>
   <div *ngIf="logged">
     <p><fa-icon [icon]="['fas', 'user']"></fa-icon> {{authService.userDetails.email}}</p>
-    <button mat-flat-button color="accent" routerLink="/register" (click)="authService.logout()"><fa-icon [icon]="['fas', 'sign-out-alt']"></fa-icon> LOGOUT</button>
+    <button id="logout" mat-flat-button color="accent" routerLink="/register" (click)="authService.logout()"><fa-icon [icon]="['fas', 'sign-out-alt']"></fa-icon> LOGOUT</button>
   </div>
 </mat-toolbar>
