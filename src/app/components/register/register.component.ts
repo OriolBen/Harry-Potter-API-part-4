@@ -18,7 +18,7 @@ export class RegisterComponent  {
   ngOnInit() {
     this.authService.afAuth.auth.onAuthStateChanged((user) => {
       if (user != null) {
-        
+        this.snackBar.open("You are already logged in", "OK")
         this.ngZone.run(() => this.router.navigate([""]))
       }
     })
