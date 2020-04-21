@@ -2,16 +2,19 @@
   <mat-sidenav #sidenav id="sticky">
     <mat-toolbar>
       <mat-toolbar-row *ngIf="!logged">
-        <button id="space" mat-flat-button color="accent" routerLink="/login" (click)="sidenav.toggle()"><fa-icon [icon]="['fas', 'sign-in-alt']"></fa-icon> LOGIN</button>
+        <button class="space" mat-flat-button color="accent" routerLink="/login" (click)="sidenav.toggle()"><fa-icon [icon]="['fas', 'sign-in-alt']"></fa-icon> LOGIN</button>
       </mat-toolbar-row>
       <mat-toolbar-row *ngIf="!logged">
-        <button mat-flat-button color="accent" routerLink="/register" (click)="sidenav.toggle()"><fa-icon [icon]="['fas', 'user-plus']"></fa-icon> REGISTER</button>
+        <button class="space" mat-flat-button color="accent" routerLink="/register" (click)="sidenav.toggle()"><fa-icon [icon]="['fas', 'user-plus']"></fa-icon> REGISTER</button>
       </mat-toolbar-row>
       <mat-toolbar-row *ngIf="logged" class="mat-caption">
         <p><fa-icon [icon]="['fas', 'user']"></fa-icon> {{authService.userDetails.email}}</p>
       </mat-toolbar-row>
       <mat-toolbar-row *ngIf="logged">
-        <button id="logout" mat-flat-button color="accent" routerLink="/register" (click)="logout(sidenav)"><fa-icon [icon]="['fas', 'sign-out-alt']"></fa-icon> LOGOUT</button>
+        <button class="space" mat-flat-button color="accent" routerLink="/register" (click)="logout(sidenav)"><fa-icon [icon]="['fas', 'sign-out-alt']"></fa-icon> LOGOUT</button>
+      </mat-toolbar-row>
+      <mat-toolbar-row>
+        <button class="space" mat-flat-button color="accent" (click)="sidenav.toggle()"><fa-icon [icon]="['fas', 'times']"></fa-icon> CLOSE</button>
       </mat-toolbar-row>
       <img id="bottom" src="https://cdn.jsdelivr.net/gh/OriolBen/Harry-Potter-API-part-4@master/src/app/assets/hogwarts.png">
     </mat-toolbar>
