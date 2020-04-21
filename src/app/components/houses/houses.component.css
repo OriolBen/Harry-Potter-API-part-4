@@ -37,3 +37,7 @@ mat-list-item {
 mat-list > mat-list {
   padding-top: 0px !important;
 }
+
+.left {
+  margin-left: 16px;
+}

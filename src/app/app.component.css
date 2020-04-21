@@ -63,3 +63,7 @@ mat-toolbar > mat-toolbar-row > span {
 #footer {
   height: 65px;
 }
+
+#down {
+  margin-bottom: 0px;
+}

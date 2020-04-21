@@ -25,15 +25,15 @@
           <!-- Slytherin does not have a school, API creator probably forgot -->
           <mat-list-item><p class="mat-body"><strong>School:</strong> {{house.school}}</p></mat-list-item>
           <mat-list-item><p class="mat-body"><strong>Colors:</strong></p></mat-list-item>
-            <mat-list>
+            <mat-list class="left">
               <mat-list-item *ngFor="let color of house.colors"><p class="mat-body">{{color}}</p></mat-list-item>
             </mat-list>
           <mat-list-item><p class="mat-body"><strong>Values:</strong></p></mat-list-item>
-            <mat-list>
+            <mat-list class="left">
               <mat-list-item *ngFor="let value of house.values"><p class="mat-body">{{value}}</p></mat-list-item>
             </mat-list>
           <mat-list-item><p class="mat-body"><strong>Members:</strong></p></mat-list-item>
-            <mat-list>
+            <mat-list class="left">
               <!-- Some members IDs do not exist so we need to filter them -->
               <div *ngFor="let id of house.members"><mat-list-item *ngIf="check(id)"><p class="mat-body"><a [routerLink]="['/characters', id]">{{characters[id]}}</a></p></mat-list-item></div>
             </mat-list>
