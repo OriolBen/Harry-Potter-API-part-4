@@ -29,3 +29,11 @@ strong {
 mat-accordion {
   margin-bottom: 15px;
 }
+
+mat-list-item {
+  height: 25px !important;
+}
+
+mat-list > mat-list {
+  padding-top: 0px !important;
+}
