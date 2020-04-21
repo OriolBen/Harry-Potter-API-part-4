@@ -15,27 +15,27 @@
 
 
         <mat-list>
-          <mat-list-item><strong>Mascot:</strong> {{house.mascot}}</mat-list-item>
+          <mat-list-item><p class="mat-body"><strong>Mascot:</strong> {{house.mascot}}</p></mat-list-item>
           <!-- Some are misspelled or do not use the full name so not possible to link them -->
-          <mat-list-item><strong>Head of House:</strong> {{house.headOfHouse}}</mat-list-item>
+          <mat-list-item><p class="mat-body"><strong>Head of House:</strong> {{house.headOfHouse}}</p></mat-list-item>
           <!-- Some are misspelled or do not use the full name so not possible to link them -->
-          <mat-list-item><strong>House ghost:</strong> {{house.houseGhost}}</mat-list-item>
+          <mat-list-item><p class="mat-body"><strong>House ghost:</strong> {{house.houseGhost}}</p></mat-list-item>
           <!-- Some are misspelled or do not use the full name so not possible to link them -->
-          <mat-list-item><strong>Founder:</strong> {{house.founder}}</mat-list-item>
+          <mat-list-item><p class="mat-body"><strong>Founder:</strong> {{house.founder}}</p></mat-list-item>
           <!-- Slytherin does not have a school, API creator probably forgot -->
-          <mat-list-item><strong>School:</strong> {{house.school}}</mat-list-item>
-          <mat-list-item><strong>Colors</strong></mat-list-item>
+          <mat-list-item><p class="mat-body"><strong>School:</strong> {{house.school}}</p></mat-list-item>
+          <mat-list-item><p class="mat-body"><strong>Colors</strong></p></mat-list-item>
             <mat-list>
-              <mat-list-item *ngFor="let color of house.colors">{{color}}</mat-list-item>
+              <mat-list-item *ngFor="let color of house.colors"><p class="mat-body">{{color}}</p></mat-list-item>
             </mat-list>
-          <mat-list-item><strong>Values</strong></mat-list-item>
+          <mat-list-item><p class="mat-body"><strong>Values</strong></p></mat-list-item>
             <mat-list>
-              <mat-list-item *ngFor="let value of house.values">{{value}}</mat-list-item>
+              <mat-list-item *ngFor="let value of house.values"><p class="mat-body">{{value}}</p></mat-list-item>
             </mat-list>
-          <mat-list-item><strong>Members</strong></mat-list-item>
+          <mat-list-item><p class="mat-body"><strong>Members</strong></p></mat-list-item>
             <mat-list>
               <!-- Some members IDs do not exist so we need to filter them -->
-              <div *ngFor="let id of house.members"><mat-list-item *ngIf="check(id)"><a [routerLink]="['/characters', id]">{{characters[id]}}</a></mat-list-item></div>
+              <div *ngFor="let id of house.members"><mat-list-item *ngIf="check(id)"><p class="mat-body"><a [routerLink]="['/characters', id]">{{characters[id]}}</a></p></mat-list-item></div>
             </mat-list>
         </mat-list>
       </mat-expansion-panel>
