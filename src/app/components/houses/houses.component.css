@@ -1,0 +1,31 @@
+a {
+  text-decoration-line: none;
+  color: #DAC137;
+}
+
+button {
+  margin-left: 10px;
+}
+
+div > div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+h2 {
+  text-align: center;
+}
+
+.down {
+  margin-top: 8px;
+}
+
+strong {
+  color: #797979;
+}
+
+mat-accordion {
+  margin-bottom: 15px;
+}
