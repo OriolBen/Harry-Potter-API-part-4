@@ -24,3 +24,15 @@ mat-list * {
 pre {
   font-size: 16px;
 }
+
+mat-list-item {
+  height: 25px !important;
+}
+
+strong {
+  color: #797979;
+}
+
+h2 {
+  margin-bottom: 0px;
+}

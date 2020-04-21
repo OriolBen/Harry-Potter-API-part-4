@@ -85,20 +85,20 @@
         <button *ngIf="authService.isLoggedIn() && checkCharacterOnline(character._id)" mat-flat-button color="accent" (click)="removeCharacterOnline(character._id)"><fa-icon [icon]="['fas', 'star']"></fa-icon> ONLINE</button>
       </mat-action-list>
       <mat-list matLine>
-        <mat-list-item *ngIf="check(character.house)"><p>House: <a [routerLink]="['/houses', link]">{{character.house}}</a></p></mat-list-item>
-        <mat-list-item *ngIf="check(character.patronus)"><p>Patronus: {{character.patronus}}</p></mat-list-item>
-        <mat-list-item *ngIf="check(character.species)"><p>Species: {{character.species}}</p></mat-list-item>
-        <mat-list-item *ngIf="check(character.bloodStatus)"><p>Blood Status: {{character.bloodStatus}}</p></mat-list-item>
-        <mat-list-item *ngIf="check(character.role)"><p>Role: {{character.role}}</p></mat-list-item>
-        <mat-list-item *ngIf="check(character.school)"><p>School: {{character.school}}</p></mat-list-item>
-        <mat-list-item *ngIf="check(character.deathEater)"><p>Death Eater: {{character.deathEater}}</p></mat-list-item>
-        <mat-list-item *ngIf="check(character.dumbledoresArmy)"><p>Dumbledore's Army: {{character.dumbledoresArmy}}</p></mat-list-item>
-        <mat-list-item *ngIf="check(character.orderOfThePhoenix)"><p>Order of the Phoenix: {{character.orderOfThePhoenix}}</p></mat-list-item>
-        <mat-list-item *ngIf="check(character.ministryOfMagic)"><p>Ministry of Magic: {{character.ministryOfMagic}}</p></mat-list-item>
-        <mat-list-item *ngIf="check(character.alias)"><p>Alias: {{character.alias}}</p></mat-list-item>
-        <mat-list-item *ngIf="check(character.wand)"><p>Wand: {{character.wand}}</p></mat-list-item>
-        <mat-list-item *ngIf="check(character.boggart)"><p>Boggart: {{character.boggart}}</p></mat-list-item>
-        <mat-list-item *ngIf="check(character.animagus)"><p>Animagus: {{character.animagus}}</p></mat-list-item>
+        <mat-list-item *ngIf="check(character.house)"><p class="mat-body"><strong>House:</strong> <a [routerLink]="['/houses', link]">{{character.house}}</a></p></mat-list-item>
+        <mat-list-item *ngIf="check(character.patronus)"><p class="mat-body"><strong>Patronus:</strong> {{character.patronus}}</p></mat-list-item>
+        <mat-list-item *ngIf="check(character.species)"><p class="mat-body"><strong>Species:</strong> {{character.species}}</p></mat-list-item>
+        <mat-list-item *ngIf="check(character.bloodStatus)"><p class="mat-body"><strong>Blood Status:</strong> {{character.bloodStatus}}</p></mat-list-item>
+        <mat-list-item *ngIf="check(character.role)"><p class="mat-body"><strong>Role:</strong> {{character.role}}</p></mat-list-item>
+        <mat-list-item *ngIf="check(character.school)"><p class="mat-body"><strong>School:</strong> {{character.school}}</p></mat-list-item>
+        <mat-list-item *ngIf="check(character.deathEater)"><p class="mat-body"><strong>Death Eater:</strong> {{character.deathEater}}</p></mat-list-item>
+        <mat-list-item *ngIf="check(character.dumbledoresArmy)"><p class="mat-body"><strong>Dumbledore's Army:</strong> {{character.dumbledoresArmy}}</p></mat-list-item>
+        <mat-list-item *ngIf="check(character.orderOfThePhoenix)"><p class="mat-body"><strong>Order of the Phoenix:</strong> {{character.orderOfThePhoenix}}</p></mat-list-item>
+        <mat-list-item *ngIf="check(character.ministryOfMagic)"><p class="mat-body"><strong>Ministry of Magic:</strong> {{character.ministryOfMagic}}</p></mat-list-item>
+        <mat-list-item *ngIf="check(character.alias)"><p class="mat-body"><strong>Alias:</strong> {{character.alias}}</p></mat-list-item>
+        <mat-list-item *ngIf="check(character.wand)"><p class="mat-body"><strong>Wand:</strong> {{character.wand}}</p></mat-list-item>
+        <mat-list-item *ngIf="check(character.boggart)"><p class="mat-body"><strong>Boggart:</strong> {{character.boggart}}</p></mat-list-item>
+        <mat-list-item *ngIf="check(character.animagus)"><p class="mat-body"><strong>Animagus:</strong> {{character.animagus}}</p></mat-list-item>
       </mat-list>
     </mat-list-item>
   </mat-list>

@@ -44,13 +44,25 @@ p {
 }
 
 .character {
-  margin-top: 500px;
+  margin-top: 350px;
 }
 
 .character:first-child {
-  margin-top: 200px;
+  margin-top: 175px;
 }
 
 .character:last-child {
-  margin-bottom: 200px;
+  margin-bottom: 175px;
+}
+
+mat-list-item {
+  height: 25px !important;
+}
+
+mat-action-list {
+  margin-bottom: 5px !important;
+}
+
+strong {
+  color: #797979;
 }
