@@ -1,7 +1,6 @@
 div > div {
   display: flex;
   justify-content: center;
-  align-items: center;
 }
 
 h2, p {

@@ -15,8 +15,8 @@
               <p>Upload your local favourites to our database.</p>
               <p><strong class="warn">WARNING! This action will delete your current online favourites.</strong></p>
               <button mat-flat-button color="accent" (click)="storage.upload()"><fa-icon [icon]="['fas', 'cloud-upload-alt']"></fa-icon> UPLOAD</button>
+              <mat-divider></mat-divider>
             </div>
-            <mat-divider></mat-divider>
             <h3>{{localHouse.name}}</h3>
             <button mat-flat-button color="accent" (click)="removeHouseLocal(localHouse._id)"><fa-icon [icon]="['fas', 'trash']"></fa-icon> REMOVE</button>
             <div><img src="https://cdn.jsdelivr.net/gh/OriolBen/Harry-Potter-API-part-4@master/src/app/assets/{{localHouse.name}}.png"></div>
@@ -53,8 +53,8 @@
               <p>Upload your local favourites to our database.</p>
               <p><strong class="warn">WARNING! This action will delete your current online favourites.</strong></p>
               <button mat-flat-button color="accent" (click)="storage.upload()"><fa-icon [icon]="['fas', 'cloud-upload-alt']"></fa-icon> UPLOAD</button>
+              <mat-divider></mat-divider>
             </div>
-            <mat-divider></mat-divider>
             <div id="center">
               <mat-accordion>
                 <mat-expansion-panel *ngFor="let character of localCharacters">
@@ -93,15 +93,20 @@
             <fa-icon [icon]="['fas', 'magic']"></fa-icon> SPELLS
           </ng-template>
           <div class="div" *ngIf="!localEmptySpells">
-            <h3>Favourite spells</h3>
+            <div class="div" *ngIf="authService.isLoggedIn()">
+              <p>Upload your local favourites to our database.</p>
+              <p><strong class="warn">WARNING! This action will delete your current online favourites.</strong></p>
+              <button mat-flat-button color="accent" (click)="storage.upload()"><fa-icon [icon]="['fas', 'cloud-upload-alt']"></fa-icon> UPLOAD</button>
+              <mat-divider></mat-divider>
+            </div>
             <mat-list>
-              <mat-list-item *ngFor="let spell of localSpells">
+              <mat-list-item *ngFor="let spell of localSpells" class="spell">
                 <mat-divider></mat-divider>
-                <mat-action-list matLine>
+                <mat-action-list>
                   {{spell.spell}}
-                  <button mat-flat-button color="accent" (click)="removeSpellLocal(spell._id)"><fa-icon [icon]="['fas', 'trash']"></fa-icon> REMOVE</button>
+                  <button class="left" mat-flat-button color="accent" (click)="removeSpellLocal(spell._id)"><fa-icon [icon]="['fas', 'trash']"></fa-icon> REMOVE</button>
                 </mat-action-list>
-                <mat-list matLine>
+                <mat-list>
                   <mat-list-item><p class="mat-body"><strong>Type:</strong> {{spell.type}}</p></mat-list-item>
                   <mat-list-item><p class="mat-body second"><strong>Effect:</strong> {{spell.effect}}</p></mat-list-item>
                 </mat-list>

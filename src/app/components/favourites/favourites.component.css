@@ -63,19 +63,28 @@ img {
   margin-bottom: 15px;
 }
 
-#center {
+mat-tab-group, #center {
   display: flex;
-  justify-content: center;
   align-items: center;
-  text-align: center;
+}
+
+#center {
   margin-top: 15px;
 }
 
 mat-divider {
-  margin-top: 10px;
-  margin-bottom: 10px;
+  margin-top: 15px;
+  margin-bottom: 15px;
 }
 
 .warn {
   color: #ff0000;
+}
+
+.spell {
+  margin-top: 50px;
+}
+
+.spell:first-child {
+  margin-top: 30px;
 }
