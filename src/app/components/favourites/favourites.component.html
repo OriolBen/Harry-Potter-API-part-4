@@ -1,10 +1,22 @@
 <div *ngIf="!storage.uploading">
   <h2>Favourites</h2>
   <mat-tab-group>
-    <mat-tab label="Local">
+    <mat-tab>
+      <ng-template mat-tab-label>
+        <fa-icon [icon]="['fas', 'database']"></fa-icon> LOCAL
+      </ng-template>
       <mat-tab-group>
-        <mat-tab label="House">
+        <mat-tab>
+          <ng-template mat-tab-label>
+            <fa-icon [icon]="['fas', 'home']"></fa-icon> HOUSES
+          </ng-template>
           <div class="div" *ngIf="!localEmptyHouse">
+            <div class="div" *ngIf="authService.isLoggedIn()">
+              <p>Upload your local favourites to our database.</p>
+              <p><strong class="warn">WARNING! This action will delete your current online favourites.</strong></p>
+              <button mat-flat-button color="accent" (click)="storage.upload()"><fa-icon [icon]="['fas', 'cloud-upload-alt']"></fa-icon> UPLOAD</button>
+            </div>
+            <mat-divider></mat-divider>
             <h3>{{localHouse.name}}</h3>
             <button mat-flat-button color="accent" (click)="removeHouseLocal(localHouse._id)"><fa-icon [icon]="['fas', 'trash']"></fa-icon> REMOVE</button>
             <div><img src="https://cdn.jsdelivr.net/gh/OriolBen/Harry-Potter-API-part-4@master/src/app/assets/{{localHouse.name}}.png"></div>
@@ -32,38 +44,54 @@
             <h3>You do not have a favourite house!</h3>
           </div>
         </mat-tab>
-        <mat-tab label="Characters">
+        <mat-tab>
+          <ng-template mat-tab-label>
+            <fa-icon [icon]="['fas', 'hat-wizard']"></fa-icon> CHARACTERS
+          </ng-template>
           <div class="div" *ngIf="!localEmptyCharacters">
-            <mat-accordion>
-              <mat-expansion-panel *ngFor="let character of localCharacters">
-                <mat-expansion-panel-header>
-                  <a class="down" [routerLink]="['/characters', character._id]">{{character.name}}</a>
-                  <button class="left" mat-flat-button color="accent" (click)="removeCharacterLocal(character._id)"><fa-icon [icon]="['fas', 'trash']"></fa-icon> REMOVE</button>
-                </mat-expansion-panel-header>
-                <mat-list>
-                  <mat-list-item *ngIf="checkCharacterInfo(character.house)"><p class="mat-body"><strong>House:</strong> <a [routerLink]="['/houses', characterHouseLocal(character.house)]">{{character.house}}</a></p></mat-list-item>
-                  <mat-list-item *ngIf="checkCharacterInfo(character.patronus)"><p class="mat-body"><strong>Patronus:</strong> {{character.patronus}}</p></mat-list-item>
-                  <mat-list-item *ngIf="checkCharacterInfo(character.species)"><p class="mat-body"><strong>Species:</strong> {{character.species}}</p></mat-list-item>
-                  <mat-list-item *ngIf="checkCharacterInfo(character.bloodStatus)"><p class="mat-body"><strong>Blood Status:</strong> {{character.bloodStatus}}</p></mat-list-item>
-                  <mat-list-item *ngIf="checkCharacterInfo(character.role)"><p class="mat-body"><strong>Role:</strong> {{character.role}}</p></mat-list-item>
-                  <mat-list-item *ngIf="checkCharacterInfo(character.school)"><p class="mat-body"><strong>School:</strong> {{character.school}}</p></mat-list-item>
-                  <mat-list-item *ngIf="checkCharacterInfo(character.deathEater)"><p class="mat-body"><strong>Death Eater:</strong> {{character.deathEater}}</p></mat-list-item>
-                  <mat-list-item *ngIf="checkCharacterInfo(character.dumbledoresArmy)"><p class="mat-body"><strong>Dumbledore's Army:</strong> {{character.dumbledoresArmy}}</p></mat-list-item>
-                  <mat-list-item *ngIf="checkCharacterInfo(character.orderOfThePhoenix)"><p class="mat-body"><strong>Order of the Phoenix:</strong> {{character.orderOfThePhoenix}}</p></mat-list-item>
-                  <mat-list-item *ngIf="checkCharacterInfo(character.ministryOfMagic)"><p class="mat-body"><strong>Ministry of Magic:</strong> {{character.ministryOfMagic}}</p></mat-list-item>
-                  <mat-list-item *ngIf="checkCharacterInfo(character.alias)"><p class="mat-body"><strong>Alias:</strong> {{character.alias}}</p></mat-list-item>
-                  <mat-list-item *ngIf="checkCharacterInfo(character.wand)"><p class="mat-body"><strong>Wand:</strong> {{character.wand}}</p></mat-list-item>
-                  <mat-list-item *ngIf="checkCharacterInfo(character.boggart)"><p class="mat-body"><strong>Boggart:</strong> {{character.boggart}}</p></mat-list-item>
-                  <mat-list-item *ngIf="checkCharacterInfo(character.animagus)"><p class="mat-body"><strong>Animagus:</strong> {{character.animagus}}</p></mat-list-item>
-                </mat-list>
-              </mat-expansion-panel>
-            </mat-accordion>
+            <div class="div" *ngIf="authService.isLoggedIn()">
+              <p>Upload your local favourites to our database.</p>
+              <p><strong class="warn">WARNING! This action will delete your current online favourites.</strong></p>
+              <button mat-flat-button color="accent" (click)="storage.upload()"><fa-icon [icon]="['fas', 'cloud-upload-alt']"></fa-icon> UPLOAD</button>
+            </div>
+            <mat-divider></mat-divider>
+            <div id="center">
+              <mat-accordion>
+                <mat-expansion-panel *ngFor="let character of localCharacters">
+                  <mat-expansion-panel-header>
+                    <p>
+                      <a class="down" [routerLink]="['/characters', character._id]">{{character.name}}</a>
+                      <button class="left" mat-flat-button color="accent" (click)="removeCharacterLocal(character._id)"><fa-icon [icon]="['fas', 'trash']"></fa-icon> REMOVE</button>
+                    </p>
+                  </mat-expansion-panel-header>
+                  <mat-list>
+                    <mat-list-item *ngIf="checkCharacterInfo(character.house)"><p class="mat-body"><strong>House:</strong> <a [routerLink]="['/houses', characterHouseLocal(character.house)]">{{character.house}}</a></p></mat-list-item>
+                    <mat-list-item *ngIf="checkCharacterInfo(character.patronus)"><p class="mat-body"><strong>Patronus:</strong> {{character.patronus}}</p></mat-list-item>
+                    <mat-list-item *ngIf="checkCharacterInfo(character.species)"><p class="mat-body"><strong>Species:</strong> {{character.species}}</p></mat-list-item>
+                    <mat-list-item *ngIf="checkCharacterInfo(character.bloodStatus)"><p class="mat-body"><strong>Blood Status:</strong> {{character.bloodStatus}}</p></mat-list-item>
+                    <mat-list-item *ngIf="checkCharacterInfo(character.role)"><p class="mat-body"><strong>Role:</strong> {{character.role}}</p></mat-list-item>
+                    <mat-list-item *ngIf="checkCharacterInfo(character.school)"><p class="mat-body"><strong>School:</strong> {{character.school}}</p></mat-list-item>
+                    <mat-list-item *ngIf="checkCharacterInfo(character.deathEater)"><p class="mat-body"><strong>Death Eater:</strong> {{character.deathEater}}</p></mat-list-item>
+                    <mat-list-item *ngIf="checkCharacterInfo(character.dumbledoresArmy)"><p class="mat-body"><strong>Dumbledore's Army:</strong> {{character.dumbledoresArmy}}</p></mat-list-item>
+                    <mat-list-item *ngIf="checkCharacterInfo(character.orderOfThePhoenix)"><p class="mat-body"><strong>Order of the Phoenix:</strong> {{character.orderOfThePhoenix}}</p></mat-list-item>
+                    <mat-list-item *ngIf="checkCharacterInfo(character.ministryOfMagic)"><p class="mat-body"><strong>Ministry of Magic:</strong> {{character.ministryOfMagic}}</p></mat-list-item>
+                    <mat-list-item *ngIf="checkCharacterInfo(character.alias)"><p class="mat-body"><strong>Alias:</strong> {{character.alias}}</p></mat-list-item>
+                    <mat-list-item *ngIf="checkCharacterInfo(character.wand)"><p class="mat-body"><strong>Wand:</strong> {{character.wand}}</p></mat-list-item>
+                    <mat-list-item *ngIf="checkCharacterInfo(character.boggart)"><p class="mat-body"><strong>Boggart:</strong> {{character.boggart}}</p></mat-list-item>
+                    <mat-list-item *ngIf="checkCharacterInfo(character.animagus)"><p class="mat-body"><strong>Animagus:</strong> {{character.animagus}}</p></mat-list-item>
+                  </mat-list>
+                </mat-expansion-panel>
+              </mat-accordion>
+            </div>
           </div>
           <div class="div" *ngIf="localEmptyCharacters">
             <h3>Your favourite character list is empty!</h3>
           </div>
         </mat-tab>
-        <mat-tab label="Spells">
+        <mat-tab>
+          <ng-template mat-tab-label>
+            <fa-icon [icon]="['fas', 'magic']"></fa-icon> SPELLS
+          </ng-template>
           <div class="div" *ngIf="!localEmptySpells">
             <h3>Favourite spells</h3>
             <mat-list>
@@ -88,8 +116,10 @@
     </mat-tab>
 
 
-    <mat-tab *ngIf="authService.isLoggedIn()" label="Online">
-      <p>ONLINE</p>
+    <mat-tab *ngIf="authService.isLoggedIn()">
+      <ng-template mat-tab-label>
+        <fa-icon [icon]="['fas', 'cloud']"></fa-icon> ONLINE
+      </ng-template>
     </mat-tab>
   </mat-tab-group>
 

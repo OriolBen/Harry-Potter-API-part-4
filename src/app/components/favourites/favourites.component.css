@@ -6,13 +6,6 @@ h2 {
   margin-bottom: 0px;
 }
 
-mat-list * {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-}
-
 .left {
   margin-left: 10px;
 }
@@ -68,4 +61,21 @@ img {
 .div {
   margin-top: 15px;
   margin-bottom: 15px;
+}
+
+#center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  margin-top: 15px;
+}
+
+mat-divider {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.warn {
+  color: #ff0000;
 }

@@ -1,6 +1,6 @@
 <div>
   <h2>Spells</h2>
-  <button mat-flat-button color="accent" (click)="updateFilter('none')"><fa-icon [icon]="['fas', 'magic']" [spin]="true"></fa-icon> ALL SPELLS</button>
+  <button mat-flat-button color="accent" (click)="updateFilter('none')"><fa-icon [icon]="['fas', 'magic']"></fa-icon> ALL SPELLS</button>
   <div>
     <mat-form-field>
       <mat-select (ngModelChange)="updateFilter('type')" [(ngModel)]="option">
