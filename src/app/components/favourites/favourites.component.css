@@ -71,7 +71,7 @@ mat-tab-group, #center {
   align-items: center;
 }
 
-#center {
+.center {
   margin-top: 15px;
 }
 
