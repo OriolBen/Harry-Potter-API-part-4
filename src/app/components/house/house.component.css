@@ -1,0 +1,45 @@
+div {
+  text-align: center;
+}
+
+div > div, mat-list * {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+div > div {
+  margin-bottom: 15px;
+}
+
+mat-list-item {
+  height: 25px !important;
+}
+
+strong {
+  color: #797979;
+}
+
+a {
+  text-decoration-line: none;
+  color: #DAC137;
+}
+
+mat-list-item {
+  height: 25px !important;
+}
+
+mat-list > mat-list {
+  display: inline;
+  margin-left: 16px;
+  padding-top: 0px !important;
+}
+
+.margin {
+  margin-bottom: 0px;
+}
+
+button {
+  margin-bottom: 10px;
+}

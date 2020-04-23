@@ -5,36 +5,28 @@
       <mat-expansion-panel *ngFor="let house of houses">
         <mat-expansion-panel-header>
           <a class="down" [routerLink]="['/houses', house._id]">{{house.name}}</a>
-          <button *ngIf="!checkHouseLocal(house._id)" mat-flat-button color="accent" (click)="addHouseLocal(house._id)"><fa-icon [icon]="['far', 'star']"></fa-icon> LOCAL</button>
-          <button *ngIf="checkHouseLocal(house._id)" mat-flat-button color="accent" (click)="removeHouseLocal(house._id)"><fa-icon [icon]="['fas', 'star']"></fa-icon> LOCAL</button>
-          <button *ngIf="authService.isLoggedIn() && !checkHouseOnline(house._id)" mat-flat-button color="accent" (click)="addHouseOnline(house._id)"><fa-icon [icon]="['far', 'star']"></fa-icon> ONLINE</button>
-          <button *ngIf="authService.isLoggedIn() && checkHouseOnline(house._id)" mat-flat-button color="accent" (click)="removeHouseOnline(house._id)"><fa-icon [icon]="['fas', 'star']"></fa-icon> ONLINE</button>
+          <button *ngIf="!checkHouseLocal(house._id)" mat-flat-button color="accent" (click)="addHouseLocal(house._id, $event)"><fa-icon [icon]="['far', 'star']"></fa-icon> LOCAL</button>
+          <button *ngIf="checkHouseLocal(house._id)" mat-flat-button color="accent" (click)="removeHouseLocal(house._id, $event)"><fa-icon [icon]="['fas', 'star']"></fa-icon> LOCAL</button>
+          <button *ngIf="authService.isLoggedIn() && !checkHouseOnline(house._id)" mat-flat-button color="accent" (click)="addHouseOnline(house._id, $event)"><fa-icon [icon]="['far', 'star']"></fa-icon> ONLINE</button>
+          <button *ngIf="authService.isLoggedIn() && checkHouseOnline(house._id)" mat-flat-button color="accent" (click)="removeHouseOnline(house._id, $event)"><fa-icon [icon]="['fas', 'star']"></fa-icon> ONLINE</button>
         </mat-expansion-panel-header>
         <img src="https://cdn.jsdelivr.net/gh/OriolBen/Harry-Potter-API-part-4@master/src/app/assets/{{house.name}}.png">
-
-
-
         <mat-list>
           <mat-list-item><p class="mat-body"><strong>Mascot:</strong> {{house.mascot}}</p></mat-list-item>
-          <!-- Some are misspelled or do not use the full name so not possible to link them -->
           <mat-list-item><p class="mat-body"><strong>Head of House:</strong> {{house.headOfHouse}}</p></mat-list-item>
-          <!-- Some are misspelled or do not use the full name so not possible to link them -->
           <mat-list-item><p class="mat-body"><strong>House ghost:</strong> {{house.houseGhost}}</p></mat-list-item>
-          <!-- Some are misspelled or do not use the full name so not possible to link them -->
           <mat-list-item><p class="mat-body"><strong>Founder:</strong> {{house.founder}}</p></mat-list-item>
-          <!-- Slytherin does not have a school, API creator probably forgot -->
           <mat-list-item><p class="mat-body"><strong>School:</strong> {{house.school}}</p></mat-list-item>
           <mat-list-item><p class="mat-body"><strong>Colors:</strong></p></mat-list-item>
-            <mat-list class="left">
+            <mat-list>
               <mat-list-item *ngFor="let color of house.colors"><p class="mat-body">{{color}}</p></mat-list-item>
             </mat-list>
           <mat-list-item><p class="mat-body"><strong>Values:</strong></p></mat-list-item>
-            <mat-list class="left">
+            <mat-list>
               <mat-list-item *ngFor="let value of house.values"><p class="mat-body">{{value}}</p></mat-list-item>
             </mat-list>
           <mat-list-item><p class="mat-body"><strong>Members:</strong></p></mat-list-item>
-            <mat-list class="left">
-              <!-- Some members IDs do not exist so we need to filter them -->
+            <mat-list>
               <div *ngFor="let id of house.members"><mat-list-item *ngIf="check(id)"><p class="mat-body"><a [routerLink]="['/characters', id]">{{characters[id]}}</a></p></mat-list-item></div>
             </mat-list>
         </mat-list>

@@ -75,6 +75,20 @@
   </div>
   <button mat-flat-button color="accent" (click)="updateFilter('custom')"><fa-icon [icon]="['fas', 'search']"></fa-icon> SEARCH</button>
   <mat-divider></mat-divider>
+
+  <mat-accordion>
+    <mat-expansion-panel *ngFor="let character of applyFilter()" class="character">
+      <mat-expansion-panel-header>
+        <a [routerLink]="['/characters', character._id]">{{character.name}}</a>
+        <button *ngIf="!checkCharacterLocal(character._id)" class="right" mat-flat-button color="accent" (click)="addCharacterLocal(character._id)"><fa-icon [icon]="['far', 'star']"></fa-icon> LOCAL</button>
+        <button *ngIf="checkCharacterLocal(character._id)" class="right" mat-flat-button color="accent" (click)="removeCharacterLocal(character._id)"><fa-icon [icon]="['fas', 'star']"></fa-icon> LOCAL</button>
+        <button *ngIf="authService.isLoggedIn() && !checkCharacterOnline(character._id)" mat-flat-button color="accent" (click)="addCharacterOnline(character._id)"><fa-icon [icon]="['far', 'star']"></fa-icon> ONLINE</button>
+        <button *ngIf="authService.isLoggedIn() && checkCharacterOnline(character._id)" mat-flat-button color="accent" (click)="removeCharacterOnline(character._id)"><fa-icon [icon]="['fas', 'star']"></fa-icon> ONLINE</button>
+      </mat-expansion-panel-header>
+    </mat-expansion-panel>
+  </mat-accordion>
+
+  <!-- 
   <mat-list>
     <mat-list-item *ngFor="let character of applyFilter()" class="character">
       <mat-action-list matLine>
@@ -103,4 +117,5 @@
     </mat-list-item>
   </mat-list>
   <h2 *ngIf="filtered.length == 0">No characters were found!</h2>
+  -->
 </div>

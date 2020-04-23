@@ -4,7 +4,7 @@
   <button *ngIf="checkCharacterLocal()" class="right" mat-flat-button color="accent" (click)="removeCharacterLocal()"><fa-icon [icon]="['fas', 'star']"></fa-icon> LOCAL</button>
   <button *ngIf="authService.isLoggedIn() && !checkCharacterOnline()" mat-flat-button color="accent" (click)="addCharacterOnline()"><fa-icon [icon]="['far', 'star']"></fa-icon> ONLINE</button>
   <button *ngIf="authService.isLoggedIn() && checkCharacterOnline()" mat-flat-button color="accent" (click)="removeCharacterOnline()"><fa-icon [icon]="['fas', 'star']"></fa-icon> ONLINE</button>
-	<mat-list matLine>
+	<mat-list>
 		<mat-list-item *ngIf="check(character.house)"><p class="mat-body"><strong>House:</strong> <a [routerLink]="['/houses', link]">{{character.house}}</a></p></mat-list-item>
 		<mat-list-item *ngIf="check(character.patronus)"><p class="mat-body"><strong>Patronus:</strong> {{character.patronus}}</p></mat-list-item>
 		<mat-list-item *ngIf="check(character.species)"><p class="mat-body"><strong>Species:</strong> {{character.species}}</p></mat-list-item>

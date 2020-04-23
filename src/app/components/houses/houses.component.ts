@@ -34,19 +34,23 @@ export class HousesComponent implements OnInit {
     })
   }
 
-  addHouseLocal(id : string) : void {
+  addHouseLocal(id : string, event : any) : void {
+    event.stopPropagation()
     this.storage.addFavouriteLocal("house", id)
   }
 
-  addHouseOnline(id : string) : void {
+  addHouseOnline(id : string, event : any) : void {
+    event.stopPropagation()
     this.storage.addFavouriteOnline("house", id)
   }
 
-  removeHouseLocal(id : string) : void {
+  removeHouseLocal(id : string, event : any) : void {
+    event.stopPropagation()
     this.storage.removeFavouriteLocal("house", id)
   }
 
-  removeHouseOnline(id : string) : void {
+  removeHouseOnline(id : string, event : any) : void {
+    event.stopPropagation()
     this.storage.removeFavouriteOnline("house", id)
   }
 

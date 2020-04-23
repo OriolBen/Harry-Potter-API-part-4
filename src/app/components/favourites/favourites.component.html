@@ -1,4 +1,54 @@
 <div *ngIf="!storage.uploading">
+
+  <mat-tab-group>
+    <mat-tab label="Local">
+      <mat-tab-group>
+        <mat-tab label="House">
+          <div *ngIf="!localEmptyHouse">
+            <h3>{{localHouse.name}} is your favourite house!</h3>
+            <button (click)="removeHouseLocal(localHouse._id)">Remove as favourite house</button>
+            <ul>
+              <li>Mascot: {{localHouse.mascot}}</li>
+              <li>Head of House: {{localHouse.headOfHouse}}</li>
+              <li>House Ghost: {{localHouse.houseGhost}}</li>
+              <li>Founder: {{localHouse.founder}}</li>
+              <li>School: {{localHouse.school}}</li>
+              <li>Colors:
+                <ul>
+                  <li *ngFor="let color of localHouse.colors">{{color}}</li>
+                </ul>
+              </li>
+              <li>Values:
+                <ul>
+                  <li *ngFor="let value of localHouse.values">{{value}}</li>
+                </ul>
+              </li>
+              <li>Members:
+                <ul>
+                  <div *ngFor="let member of localHouse.members"><li *ngIf="checkHouseCharactersLocal(member._id)"><a [routerLink]="['/characters', member._id]">{{localHouseCharacters[member._id]}}</a></li></div>
+                </ul>
+              </li>
+            </ul>
+          </div>
+          <div *ngIf="localEmptyHouse">
+            <h3>You do not have a favourite house!</h3>
+          </div>
+        </mat-tab>
+        <mat-tab label="Characters">
+          <p>LOCAL CHARACTERS</p>
+        </mat-tab>
+        <mat-tab label="Spells">
+          <p>LOCAL SPELLS</p>
+        </mat-tab>
+      </mat-tab-group>
+    </mat-tab>
+    <mat-tab *ngIf="authService.isLoggedIn()" label="Online">
+      <h1>Some more tab content</h1>
+      <p>...</p>
+    </mat-tab>
+  </mat-tab-group>
+
+  <!-- 
   <button *ngIf="authService.isLoggedIn()" (click)="mode = 'local'">Local</button>
   <button *ngIf="authService.isLoggedIn()" (click)="mode = 'online'">Online</button>
   <div *ngIf="mode == 'local'">
@@ -15,13 +65,9 @@
         <button (click)="removeHouseLocal(localHouse._id)">Remove as favourite house</button>
         <ul>
           <li>Mascot: {{localHouse.mascot}}</li>
-          <!-- Some are misspelled or do not use the full name so not possible to link them -->
           <li>Head of House: {{localHouse.headOfHouse}}</li>
-          <!-- Some are misspelled or do not use the full name so not possible to link them -->
           <li>House Ghost: {{localHouse.houseGhost}}</li>
-          <!-- Some are misspelled or do not use the full name so not possible to link them -->
           <li>Founder: {{localHouse.founder}}</li>
-          <!-- Slytherin does not have a school, API creator probably forgot -->
           <li>School: {{localHouse.school}}</li>
           <li>Colors:
             <ul>
@@ -35,7 +81,6 @@
           </li>
           <li>Members:
             <ul>
-              <!-- Some members IDs do not exist so we need to filter them -->
               <div *ngFor="let member of localHouse.members"><li *ngIf="checkHouseCharactersLocal(member._id)"><a [routerLink]="['/characters', member._id]">{{localHouseCharacters[member._id]}}</a></li></div>
             </ul>
           </li>
@@ -103,13 +148,9 @@
         <button (click)="removeHouseOnline(localHouse._id)">Remove as favourite house</button>
         <ul>
           <li>Mascot: {{onlineHouse.mascot}}</li>
-          <!-- Some are misspelled or do not use the full name so not possible to link them -->
           <li>Head of House: {{onlineHouse.headOfHouse}}</li>
-          <!-- Some are misspelled or do not use the full name so not possible to link them -->
           <li>House Ghost: {{onlineHouse.houseGhost}}</li>
-          <!-- Some are misspelled or do not use the full name so not possible to link them -->
           <li>Founder: {{onlineHouse.founder}}</li>
-          <!-- Slytherin does not have a school, API creator probably forgot -->
           <li>School: {{onlineHouse.school}}</li>
           <li>Colors:
             <ul>
@@ -123,7 +164,6 @@
           </li>
           <li>Members:
             <ul>
-              <!-- Some members IDs do not exist so we need to filter them -->
               <div *ngFor="let member of onlineHouse.members"><li *ngIf="checkHouseCharactersOnline(member._id)"><a [routerLink]="['/characters', member._id]">{{onlineHouseCharacters[member._id]}}</a></li></div>
             </ul>
           </li>
@@ -182,6 +222,7 @@
       <h2>You have no online favourites :(</h2>
     </div>
   </div>
+  -->
 </div>
 <div *ngIf="storage.uploading">
   <h2>Uploading data...</h2>
