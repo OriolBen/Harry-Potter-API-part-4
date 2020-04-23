@@ -30,7 +30,7 @@ export class DataService {
     "characters": [],
     "spells": []
   }
-  uploading : boolean = false
+  updating : boolean = true
 
   constructor(@Inject(LOCAL_DATA) public data : Storage, private db : AngularFireDatabase, public authentication : AuthenticationService) {
     let exists = this.data.getItem('Harry Potter API')
@@ -43,6 +43,7 @@ export class DataService {
           this.online.spells = Object.values(data[2])
         })
       }
+      this.updating = false
     })
   }
 
@@ -55,6 +56,7 @@ export class DataService {
   }
 
   addFavouriteLocal(category : string, id : string) : void {
+    this.updating = true
     switch (category) {
       case "house":
         this.local.house = id
@@ -64,24 +66,30 @@ export class DataService {
         break
     }
     this.data.setItem('Harry Potter API', JSON.stringify(this.local))
+    this.updating = false
   }
 
   addFavouriteOnline(category : string, id : string) : void {
+    this.updating = true
     switch (category) {
       case "house":
         this.db.database.ref(this.authentication.userDetails.uid).update({
           house: id
-        }).then(() => this.online.house = id)
+        }).then(() => {
+          this.online.house = id
+          this.updating = false
+        })
         break
       default:
         this.db.database.ref(this.authentication.userDetails.uid + "/" + category).update({
           [id]: id
-        })
+        }).then(() => this.updating = false)
         break
     }
   }
 
   removeFavouriteLocal(category : string, id : string) : void {
+    this.updating = true
     switch (category) {
       case "house": 
         this.local.house = ""
@@ -93,26 +101,28 @@ export class DataService {
         break
     }
     this.data.setItem('Harry Potter API', JSON.stringify(this.local))
+    this.updating = false
   }
 
   removeFavouriteOnline(category : string, id : string) : void {
+    this.updating = true
     switch (category) {
       case "house": 
         this.db.database.ref(this.authentication.userDetails.uid).update({
           house: ""
-        })
+        }).then(() => this.updating = false)
         break
       default:
-        if (this.online[category].length != 1) this.db.database.ref(this.authentication.userDetails.uid + "/" + category + "/" + id).remove()
+        if (this.online[category].length != 1) this.db.database.ref(this.authentication.userDetails.uid + "/" + category + "/" + id).remove().then(() => this.updating = false)
         else this.db.database.ref(this.authentication.userDetails.uid).update({
           [category]: ""
-        })
+        }).then(() => this.updating = false)
         break
     }
   }
 
   upload() : void {
-    this.uploading = true
+    this.updating = true
     let characters = this.local.characters.reduce(function(o, val) {
       o[val] = val
       return o
@@ -125,6 +135,6 @@ export class DataService {
       house: this.local.house,
       characters: characters,
       spells: spells,
-    }).then(() => this.uploading = false)
+    }).then(() => this.updating = false)
   }
 }

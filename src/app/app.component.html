@@ -1,16 +1,16 @@
 <mat-sidenav-container [hasBackdrop]="false">
   <mat-sidenav #sidenav id="sticky">
     <mat-toolbar>
-      <mat-toolbar-row *ngIf="!logged">
+      <mat-toolbar-row *ngIf="!authService.logged">
         <button class="space" mat-flat-button color="accent" routerLink="/login" (click)="sidenav.toggle()"><fa-icon [icon]="['fas', 'sign-in-alt']"></fa-icon> LOGIN</button>
       </mat-toolbar-row>
-      <mat-toolbar-row *ngIf="!logged">
+      <mat-toolbar-row *ngIf="!authService.logged">
         <button class="space" mat-flat-button color="accent" routerLink="/register" (click)="sidenav.toggle()"><fa-icon [icon]="['fas', 'user-plus']"></fa-icon> REGISTER</button>
       </mat-toolbar-row>
-      <mat-toolbar-row *ngIf="logged" class="mat-caption">
+      <mat-toolbar-row *ngIf="authService.logged" class="mat-caption">
         <p><fa-icon [icon]="['fas', 'user']"></fa-icon> {{authService.userDetails.email}}</p>
       </mat-toolbar-row>
-      <mat-toolbar-row *ngIf="logged">
+      <mat-toolbar-row *ngIf="authService.logged">
         <button class="space" mat-flat-button color="accent" routerLink="/register" (click)="logout(sidenav)"><fa-icon [icon]="['fas', 'sign-out-alt']"></fa-icon> LOGOUT</button>
       </mat-toolbar-row>
       <mat-toolbar-row>

@@ -14,7 +14,7 @@ export class AuthenticationService {
   logged : boolean = false
   login : string = "Unknown"
 
-  constructor(private ngZone: NgZone, public afAuth : AngularFireAuth, private router : Router, private db : AngularFireDatabase, private snackBar: MatSnackBar) {
+  constructor(private ngZone: NgZone, public afAuth : AngularFireAuth, private router : Router, private db : AngularFireDatabase, private snackBar : MatSnackBar) {
     this.afAuth.auth.onAuthStateChanged((user) => {
       if (user == null) {
         this.userDetails = null
@@ -83,6 +83,7 @@ export class AuthenticationService {
 
   logout() {
     this.logged = false
+    this.snackBar.open("Successful logout", "", { duration: 3000 })
     return this.afAuth.auth.signOut().then(() => this.ngZone.run(() => this.router.navigate([""])))
   }
 

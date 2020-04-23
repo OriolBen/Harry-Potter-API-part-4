@@ -13,7 +13,7 @@ export class LoginComponent {
   email : string = ""
   password : string = ""
 
-  constructor(private ngZone: NgZone, private authService : AuthenticationService, private router : Router, private snackBar: MatSnackBar) {}
+  constructor(private ngZone: NgZone, private authService : AuthenticationService, private router : Router, private snackBar : MatSnackBar) {}
 
   ngOnInit() {
     this.authService.afAuth.auth.onAuthStateChanged((user) => {
