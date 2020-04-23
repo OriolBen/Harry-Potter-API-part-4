@@ -1,50 +1,95 @@
 <div *ngIf="!storage.uploading">
-
+  <h2>Favourites</h2>
   <mat-tab-group>
     <mat-tab label="Local">
       <mat-tab-group>
         <mat-tab label="House">
-          <div *ngIf="!localEmptyHouse">
-            <h3>{{localHouse.name}} is your favourite house!</h3>
-            <button (click)="removeHouseLocal(localHouse._id)">Remove as favourite house</button>
-            <ul>
-              <li>Mascot: {{localHouse.mascot}}</li>
-              <li>Head of House: {{localHouse.headOfHouse}}</li>
-              <li>House Ghost: {{localHouse.houseGhost}}</li>
-              <li>Founder: {{localHouse.founder}}</li>
-              <li>School: {{localHouse.school}}</li>
-              <li>Colors:
-                <ul>
-                  <li *ngFor="let color of localHouse.colors">{{color}}</li>
-                </ul>
-              </li>
-              <li>Values:
-                <ul>
-                  <li *ngFor="let value of localHouse.values">{{value}}</li>
-                </ul>
-              </li>
-              <li>Members:
-                <ul>
-                  <div *ngFor="let member of localHouse.members"><li *ngIf="checkHouseCharactersLocal(member._id)"><a [routerLink]="['/characters', member._id]">{{localHouseCharacters[member._id]}}</a></li></div>
-                </ul>
-              </li>
-            </ul>
+          <div class="div" *ngIf="!localEmptyHouse">
+            <h3>{{localHouse.name}}</h3>
+            <button mat-flat-button color="accent" (click)="removeHouseLocal(localHouse._id)"><fa-icon [icon]="['fas', 'trash']"></fa-icon> REMOVE</button>
+            <div><img src="https://cdn.jsdelivr.net/gh/OriolBen/Harry-Potter-API-part-4@master/src/app/assets/{{localHouse.name}}.png"></div>
+            <mat-list>
+              <mat-list-item><p class="mat-body"><strong>Mascot:</strong> {{localHouse.mascot}}</p></mat-list-item>
+              <mat-list-item><p class="mat-body"><strong>Head of House:</strong> {{localHouse.headOfHouse}}</p></mat-list-item>
+              <mat-list-item><p class="mat-body"><strong>House Ghost:</strong> {{localHouse.houseGhost}}</p></mat-list-item>
+              <mat-list-item><p class="mat-body"><strong>Founder:</strong> {{localHouse.founder}}</p></mat-list-item>
+              <mat-list-item><p class="mat-body"><strong>School:</strong> {{localHouse.school}}</p></mat-list-item>
+              <mat-list-item><p class="mat-body"><strong>Colors:</strong></p></mat-list-item>
+              <mat-list>
+                <mat-list-item *ngFor="let color of localHouse.colors"><p class="mat-body">{{color}}</p></mat-list-item>
+              </mat-list>
+              <mat-list-item><p class="mat-body"><strong>Values:</strong></p></mat-list-item>
+              <mat-list>
+                <mat-list-item *ngFor="let value of localHouse.values"><p class="mat-body">{{value}}</p></mat-list-item>
+              </mat-list>
+              <mat-list-item><p class="mat-body margin"><strong>Members:</strong></p></mat-list-item>
+              <mat-list>
+                <div *ngFor="let member of localHouse.members"><mat-list-item *ngIf="checkHouseCharactersLocal(member._id)"><p class="mat-body"><a [routerLink]="['/characters', member._id]">{{localHouseCharacters[member._id]}}</a></p></mat-list-item></div>
+              </mat-list>
+            </mat-list>
           </div>
-          <div *ngIf="localEmptyHouse">
+          <div class="div" *ngIf="localEmptyHouse">
             <h3>You do not have a favourite house!</h3>
           </div>
         </mat-tab>
         <mat-tab label="Characters">
-          <p>LOCAL CHARACTERS</p>
+          <div class="div" *ngIf="!localEmptyCharacters">
+            <mat-accordion>
+              <mat-expansion-panel *ngFor="let character of localCharacters">
+                <mat-expansion-panel-header>
+                  <a class="down" [routerLink]="['/characters', character._id]">{{character.name}}</a>
+                  <button class="left" mat-flat-button color="accent" (click)="removeCharacterLocal(character._id)"><fa-icon [icon]="['fas', 'trash']"></fa-icon> REMOVE</button>
+                </mat-expansion-panel-header>
+                <mat-list>
+                  <mat-list-item *ngIf="checkCharacterInfo(character.house)"><p class="mat-body"><strong>House:</strong> <a [routerLink]="['/houses', characterHouseLocal(character.house)]">{{character.house}}</a></p></mat-list-item>
+                  <mat-list-item *ngIf="checkCharacterInfo(character.patronus)"><p class="mat-body"><strong>Patronus:</strong> {{character.patronus}}</p></mat-list-item>
+                  <mat-list-item *ngIf="checkCharacterInfo(character.species)"><p class="mat-body"><strong>Species:</strong> {{character.species}}</p></mat-list-item>
+                  <mat-list-item *ngIf="checkCharacterInfo(character.bloodStatus)"><p class="mat-body"><strong>Blood Status:</strong> {{character.bloodStatus}}</p></mat-list-item>
+                  <mat-list-item *ngIf="checkCharacterInfo(character.role)"><p class="mat-body"><strong>Role:</strong> {{character.role}}</p></mat-list-item>
+                  <mat-list-item *ngIf="checkCharacterInfo(character.school)"><p class="mat-body"><strong>School:</strong> {{character.school}}</p></mat-list-item>
+                  <mat-list-item *ngIf="checkCharacterInfo(character.deathEater)"><p class="mat-body"><strong>Death Eater:</strong> {{character.deathEater}}</p></mat-list-item>
+                  <mat-list-item *ngIf="checkCharacterInfo(character.dumbledoresArmy)"><p class="mat-body"><strong>Dumbledore's Army:</strong> {{character.dumbledoresArmy}}</p></mat-list-item>
+                  <mat-list-item *ngIf="checkCharacterInfo(character.orderOfThePhoenix)"><p class="mat-body"><strong>Order of the Phoenix:</strong> {{character.orderOfThePhoenix}}</p></mat-list-item>
+                  <mat-list-item *ngIf="checkCharacterInfo(character.ministryOfMagic)"><p class="mat-body"><strong>Ministry of Magic:</strong> {{character.ministryOfMagic}}</p></mat-list-item>
+                  <mat-list-item *ngIf="checkCharacterInfo(character.alias)"><p class="mat-body"><strong>Alias:</strong> {{character.alias}}</p></mat-list-item>
+                  <mat-list-item *ngIf="checkCharacterInfo(character.wand)"><p class="mat-body"><strong>Wand:</strong> {{character.wand}}</p></mat-list-item>
+                  <mat-list-item *ngIf="checkCharacterInfo(character.boggart)"><p class="mat-body"><strong>Boggart:</strong> {{character.boggart}}</p></mat-list-item>
+                  <mat-list-item *ngIf="checkCharacterInfo(character.animagus)"><p class="mat-body"><strong>Animagus:</strong> {{character.animagus}}</p></mat-list-item>
+                </mat-list>
+              </mat-expansion-panel>
+            </mat-accordion>
+          </div>
+          <div class="div" *ngIf="localEmptyCharacters">
+            <h3>Your favourite character list is empty!</h3>
+          </div>
         </mat-tab>
         <mat-tab label="Spells">
-          <p>LOCAL SPELLS</p>
+          <div class="div" *ngIf="!localEmptySpells">
+            <h3>Favourite spells</h3>
+            <mat-list>
+              <mat-list-item *ngFor="let spell of localSpells">
+                <mat-divider></mat-divider>
+                <mat-action-list matLine>
+                  {{spell.spell}}
+                  <button mat-flat-button color="accent" (click)="removeSpellLocal(spell._id)"><fa-icon [icon]="['fas', 'trash']"></fa-icon> REMOVE</button>
+                </mat-action-list>
+                <mat-list matLine>
+                  <mat-list-item><p class="mat-body"><strong>Type:</strong> {{spell.type}}</p></mat-list-item>
+                  <mat-list-item><p class="mat-body second"><strong>Effect:</strong> {{spell.effect}}</p></mat-list-item>
+                </mat-list>
+              </mat-list-item>
+            </mat-list>
+          </div>
+          <div class="div" *ngIf="localEmptySpells">
+            <h3>Your favourite spell list is empty!</h3>
+          </div>
         </mat-tab>
       </mat-tab-group>
     </mat-tab>
+
+
     <mat-tab *ngIf="authService.isLoggedIn()" label="Online">
-      <h1>Some more tab content</h1>
-      <p>...</p>
+      <p>ONLINE</p>
     </mat-tab>
   </mat-tab-group>
 
