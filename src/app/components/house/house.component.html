@@ -1,34 +1,29 @@
 <div *ngIf="exists">
   <h2>{{house.name}}</h2>
-  <button *ngIf="!checkHouseLocal(house._id)" mat-flat-button color="accent" (click)="addHouseLocal(house._id)"><fa-icon [icon]="['far', 'star']"></fa-icon> LOCAL</button>
-  <button *ngIf="checkHouseLocal(house._id)" mat-flat-button color="accent" (click)="removeHouseLocal(house._id)"><fa-icon [icon]="['fas', 'star']"></fa-icon> LOCAL</button>
+  <button *ngIf="!checkHouseLocal(house._id)" class="right"  mat-flat-button color="accent" (click)="addHouseLocal(house._id)"><fa-icon [icon]="['far', 'star']"></fa-icon> LOCAL</button>
+  <button *ngIf="checkHouseLocal(house._id)" class="right"  mat-flat-button color="accent" (click)="removeHouseLocal(house._id)"><fa-icon [icon]="['fas', 'star']"></fa-icon> LOCAL</button>
   <button *ngIf="authService.isLoggedIn() && !checkHouseOnline(house._id)" mat-flat-button color="accent" (click)="addHouseOnline(house._id)"><fa-icon [icon]="['far', 'star']"></fa-icon> ONLINE</button>
   <button *ngIf="authService.isLoggedIn() && checkHouseOnline(house._id)" mat-flat-button color="accent" (click)="removeHouseOnline(house._id)"><fa-icon [icon]="['fas', 'star']"></fa-icon> ONLINE</button>
-  <mat-list>
-    <mat-list-item><p class="mat-body"><strong>Mascot:</strong> {{house.mascot}}</p></mat-list-item>
-    <mat-list-item><p class="mat-body"><strong>Head of House:</strong> {{house.headOfHouse}}</p></mat-list-item>
-    <mat-list-item><p class="mat-body"><strong>House Ghost:</strong> {{house.houseGhost}}</p></mat-list-item>
-    <mat-list-item><p class="mat-body"><strong>Founder:</strong> {{house.founder}}</p></mat-list-item>
-    <mat-list-item><p class="mat-body"><strong>School:</strong> {{house.school}}</p></mat-list-item>
-    <mat-list-item><p class="mat-body"><strong>Colors:</strong></p></mat-list-item>
+  <div><img src="https://cdn.jsdelivr.net/gh/OriolBen/Harry-Potter-API-part-4@master/src/app/assets/{{house.name}}.png"></div>
+    <mat-list>
+      <mat-list-item><p class="mat-body"><strong>Mascot:</strong> {{house.mascot}}</p></mat-list-item>
+      <mat-list-item><p class="mat-body"><strong>Head of House:</strong> {{house.headOfHouse}}</p></mat-list-item>
+      <mat-list-item><p class="mat-body"><strong>House Ghost:</strong> {{house.houseGhost}}</p></mat-list-item>
+      <mat-list-item><p class="mat-body"><strong>Founder:</strong> {{house.founder}}</p></mat-list-item>
+      <mat-list-item><p class="mat-body"><strong>School:</strong> {{house.school}}</p></mat-list-item>
+      <mat-list-item><p class="mat-body"><strong>Colors:</strong></p></mat-list-item>
       <mat-list>
         <mat-list-item *ngFor="let color of house.colors"><p class="mat-body">{{color}}</p></mat-list-item>
       </mat-list>
-    <mat-list-item><p class="mat-body"><strong>Values:</strong></p></mat-list-item>
+      <mat-list-item><p class="mat-body"><strong>Values:</strong></p></mat-list-item>
       <mat-list>
         <mat-list-item *ngFor="let value of house.values"><p class="mat-body">{{value}}</p></mat-list-item>
       </mat-list>
-  </mat-list>
-  <div>
-    <mat-expansion-panel>
-      <mat-expansion-panel-header>
-        <mat-panel-title><p class="mat-body margin"><strong>Members:</strong></p></mat-panel-title>
-      </mat-expansion-panel-header>
+      <mat-list-item><p class="mat-body margin"><strong>Members:</strong></p></mat-list-item>
       <mat-list>
         <div *ngFor="let member of house.members"><mat-list-item *ngIf="check(member._id)"><p class="mat-body"><a [routerLink]="['/characters', member._id]">{{characters[member._id]}}</a></p></mat-list-item></div>
       </mat-list>
-    </mat-expansion-panel>
-  </div>
+    </mat-list>
 </div>
 <div *ngIf="!exists">
 	<h2>House does not exist!</h2>

@@ -103,19 +103,23 @@ export class CharactersComponent implements OnInit {
     })
   }
 
-  addCharacterLocal(id : string) : void {
+  addCharacterLocal(id : string, $event : any) : void {
+    $event.stopPropagation()
     this.storage.addFavouriteLocal("characters", id)
   }
 
-  addCharacterOnline(id : string) : void {
+  addCharacterOnline(id : string, $event : any) : void {
+    $event.stopPropagation()
     this.storage.addFavouriteOnline("characters", id)
   }
 
-  removeCharacterLocal(id : string) : void {
+  removeCharacterLocal(id : string, $event : any) : void {
+    $event.stopPropagation()
     this.storage.removeFavouriteLocal("characters", id)
   }
 
-  removeCharacterOnline(id : string) : void {
+  removeCharacterOnline(id : string, $event : any) : void {
+    $event.stopPropagation()
     this.storage.removeFavouriteOnline("characters", id)
   }
 

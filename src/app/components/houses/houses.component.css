@@ -14,6 +14,11 @@ div > div {
   text-align: center;
 }
 
+p {
+  width: 100%;
+  margin-bottom: 0px;
+}
+
 h2 {
   text-align: center;
 }
@@ -35,6 +40,9 @@ mat-list-item {
 }
 
 mat-list > mat-list {
-  margin-left: 16px;
   padding-top: 0px !important;
+}
+
+mat-list > mat-list:not(:last-child) {
+  margin-bottom: 10px;
 }
