@@ -4,6 +4,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http'
 @Injectable()
 export class ApiService {
   readonly apiKey = "$2a$10$UD/i1boaxVbc18ID7VvX3OpjR0BVvUHZi92xxucNXtutx1KCPTChW"
+  calling : boolean = false
 
   constructor(private http: HttpClient) {}
 
@@ -30,5 +31,9 @@ export class ApiService {
   getAllSpells() {
     const apiURL = "https://www.potterapi.com/v1/spells" + "?key=" + this.apiKey
     return this.http.get(apiURL)
+  }
+
+  setCalling(value : boolean) : void {
+    this.calling = value
   }
 }

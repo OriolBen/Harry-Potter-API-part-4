@@ -12,17 +12,20 @@ export class AuthenticationService {
   userDetails : firebase.User = null 
   displayName : string = ""
   logged : boolean = false
+  login : string = "Unknown"
 
   constructor(private ngZone: NgZone, public afAuth : AngularFireAuth, private router : Router, private db : AngularFireDatabase, private snackBar: MatSnackBar) {
     this.afAuth.auth.onAuthStateChanged((user) => {
       if (user == null) {
         this.userDetails = null
         this.logged = false
+        this.login = "No"
       }
       else {
         this.userDetails = user
         this.displayName = (this.userDetails.displayName) ? this.userDetails.displayName : this.userDetails.email
         this.logged = true
+        this.login = "Yes"
       }
     })
   }
