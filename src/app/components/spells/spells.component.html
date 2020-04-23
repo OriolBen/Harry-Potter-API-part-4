@@ -19,7 +19,7 @@
       <mat-label>Spells by name</mat-label>
       <input matInput type="text" placeholder="Email" name="name" (keyup.enter)="updateFilter('name')" [(ngModel)]="temporaryName" placeholder="Spells by name"/>
     </mat-form-field>
-    <button mat-flat-button color="accent" (click)="updateFilter('name')"><fa-icon [icon]="['fas', 'search']"></fa-icon> SEARCH</button>
+    <button id="bot" mat-flat-button color="accent" (click)="updateFilter('name')"><fa-icon [icon]="['fas', 'search']"></fa-icon> SEARCH</button>
   </div>
   <mat-divider></mat-divider>
   <mat-list>

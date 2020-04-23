@@ -14,7 +14,7 @@
             <div class="div" *ngIf="authService.isLoggedIn()">
               <p>Upload your local favourites to our database.</p>
               <p><strong class="warn">WARNING! This action will delete your current online favourites.</strong></p>
-              <button mat-flat-button color="accent" (click)="storage.upload()"><fa-icon [icon]="['fas', 'cloud-upload-alt']"></fa-icon> UPLOAD</button>
+              <button class="upload" mat-flat-button color="accent" (click)="storage.upload()"><fa-icon [icon]="['fas', 'cloud-upload-alt']"></fa-icon> UPLOAD</button>
               <mat-divider></mat-divider>
             </div>
             <h3>{{localHouse.name}}</h3>
@@ -27,15 +27,15 @@
               <mat-list-item><p class="mat-body"><strong>Founder:</strong> {{localHouse.founder}}</p></mat-list-item>
               <mat-list-item><p class="mat-body"><strong>School:</strong> {{localHouse.school}}</p></mat-list-item>
               <mat-list-item><p class="mat-body"><strong>Colors:</strong></p></mat-list-item>
-              <mat-list>
+              <mat-list class="child">
                 <mat-list-item *ngFor="let color of localHouse.colors"><p class="mat-body">{{color}}</p></mat-list-item>
               </mat-list>
               <mat-list-item><p class="mat-body"><strong>Values:</strong></p></mat-list-item>
-              <mat-list>
+              <mat-list class="child">
                 <mat-list-item *ngFor="let value of localHouse.values"><p class="mat-body">{{value}}</p></mat-list-item>
               </mat-list>
               <mat-list-item><p class="mat-body margin"><strong>Members:</strong></p></mat-list-item>
-              <mat-list>
+              <mat-list class="child">
                 <div *ngFor="let member of localHouse.members"><mat-list-item *ngIf="checkHouseCharactersLocal(member._id)"><p class="mat-body"><a [routerLink]="['/characters', member._id]">{{localHouseCharacters[member._id]}}</a></p></mat-list-item></div>
               </mat-list>
             </mat-list>
@@ -52,7 +52,7 @@
             <div class="div" *ngIf="authService.isLoggedIn()">
               <p>Upload your local favourites to our database.</p>
               <p><strong class="warn">WARNING! This action will delete your current online favourites.</strong></p>
-              <button mat-flat-button color="accent" (click)="storage.upload()"><fa-icon [icon]="['fas', 'cloud-upload-alt']"></fa-icon> UPLOAD</button>
+              <button class="upload" mat-flat-button color="accent" (click)="storage.upload()"><fa-icon [icon]="['fas', 'cloud-upload-alt']"></fa-icon> UPLOAD</button>
               <mat-divider></mat-divider>
             </div>
             <div id="center">
@@ -96,21 +96,25 @@
             <div class="div" *ngIf="authService.isLoggedIn()">
               <p>Upload your local favourites to our database.</p>
               <p><strong class="warn">WARNING! This action will delete your current online favourites.</strong></p>
-              <button mat-flat-button color="accent" (click)="storage.upload()"><fa-icon [icon]="['fas', 'cloud-upload-alt']"></fa-icon> UPLOAD</button>
+              <button class="upload" mat-flat-button color="accent" (click)="storage.upload()"><fa-icon [icon]="['fas', 'cloud-upload-alt']"></fa-icon> UPLOAD</button>
               <mat-divider></mat-divider>
             </div>
             <mat-list>
-              <mat-list-item *ngFor="let spell of localSpells" class="spell">
-                <mat-divider></mat-divider>
-                <mat-action-list>
-                  {{spell.spell}}
-                  <button class="left" mat-flat-button color="accent" (click)="removeSpellLocal(spell._id)"><fa-icon [icon]="['fas', 'trash']"></fa-icon> REMOVE</button>
-                </mat-action-list>
+              <div *ngFor="let spell of localSpells" class="spell">
                 <mat-list>
-                  <mat-list-item><p class="mat-body"><strong>Type:</strong> {{spell.type}}</p></mat-list-item>
-                  <mat-list-item><p class="mat-body second"><strong>Effect:</strong> {{spell.effect}}</p></mat-list-item>
+                  <mat-list-item>
+                    <p class="mat-body">
+                      {{spell.spell}}
+                      <button class="left2" mat-flat-button color="accent" (click)="removeSpellLocal(spell._id)"><fa-icon [icon]="['fas', 'trash']"></fa-icon> REMOVE</button>
+                    </p> 
+                  </mat-list-item>
+                  <mat-list>
+                    <mat-list-item><p class="mat-body first"><strong>Type:</strong> {{spell.type}}</p></mat-list-item>
+                    <mat-list-item><p class="mat-body second"><strong>Effect:</strong> {{spell.effect}}</p></mat-list-item>
+                  </mat-list>
                 </mat-list>
-              </mat-list-item>
+                <mat-divider class="divider"></mat-divider>
+              </div>
             </mat-list>
           </div>
           <div class="div" *ngIf="localEmptySpells">
@@ -120,7 +124,7 @@
       </mat-tab-group>
     </mat-tab>
 
-
+    
     <mat-tab *ngIf="authService.isLoggedIn()">
       <ng-template mat-tab-label>
         <fa-icon [icon]="['fas', 'cloud']"></fa-icon> ONLINE

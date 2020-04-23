@@ -37,3 +37,7 @@ div > button {
 strong {
   color: #797979;
 }
+
+#bot {
+  margin-top: -80px;
+}
