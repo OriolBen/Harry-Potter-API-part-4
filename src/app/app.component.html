@@ -28,10 +28,7 @@
           <a routerLink=""><h1 class="mat-display-h1">Harry Potter API</h1></a>
         </mat-toolbar-row>
       </mat-toolbar>
-      <router-outlet *ngIf="!loading()"></router-outlet>
-      <div id="middle" *ngIf="loading()">
-        <fa-icon [icon]="['fas', 'quidditch']" size="6x" [spin]="true"></fa-icon>
-      </div>
+      <router-outlet></router-outlet>
     </div>
     <mat-toolbar id="footer">
       <mat-toolbar-row >

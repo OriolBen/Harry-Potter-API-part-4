@@ -18,8 +18,4 @@ export class AppComponent {
     sidenav.toggle()
     this.authService.logout()
   }
-
-  loading() : boolean {
-    return this.storage.updating || this.authService.login == "Unknown"
-  }
 }
