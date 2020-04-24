@@ -75,7 +75,7 @@ mat-tab-group, #center {
   margin-top: 15px;
 }
 
-mat-divider {
+mat-divider:not(last-child) {
   margin-top: 15px;
   margin-bottom: 15px;
 }
