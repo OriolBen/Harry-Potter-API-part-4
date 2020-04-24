@@ -5,6 +5,7 @@ import { FormsModule } from '@angular/forms'
 import { HttpClientModule } from '@angular/common/http'
 import { RouterModule } from '@angular/router'
 import { AppRoutingModule } from './app-routing.module'
+import { OverlayModule } from '@angular/cdk/overlay';
 
 // Firebase
 import { AngularFireModule } from '@angular/fire'
@@ -15,6 +16,7 @@ import { AngularFireDatabaseModule } from '@angular/fire/database'
 import { ApiService } from './services/api.service'
 import { DataService } from './services/data.service'
 import { AuthenticationService } from './services/authentication.service'
+import { LoadingService } from './services/loading.service'
 
 // Components
 import { AppComponent } from './app.component'
@@ -29,6 +31,7 @@ import { LoginComponent } from './components/login/login.component'
 import { RegisterComponent } from './components/register/register.component'
 import { ResetComponent } from './components/reset/reset.component'
 import { AccountComponent } from './components/account/account.component'
+import { LoadingComponent } from './components/loading/loading.component'
 
 // Angular Material
 import { MaterialModule } from './material.module'
@@ -59,7 +62,8 @@ import { fab } from '@fortawesome/free-brands-svg-icons'
     AngularFireDatabaseModule,
     BrowserAnimationsModule,
     MaterialModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    OverlayModule
   ],
   declarations: [ 
     AppComponent,
@@ -73,7 +77,8 @@ import { fab } from '@fortawesome/free-brands-svg-icons'
     LoginComponent,
     RegisterComponent,
     ResetComponent,
-    AccountComponent
+    AccountComponent,
+    LoadingComponent
   ],
   bootstrap: [ 
     AppComponent
@@ -82,7 +87,11 @@ import { fab } from '@fortawesome/free-brands-svg-icons'
     ApiService,
     DataService,
     AngularFireAuth,
-    AuthenticationService
+    AuthenticationService,
+    LoadingService
+  ],
+  entryComponents: [
+    LoadingComponent
   ]
 })
 

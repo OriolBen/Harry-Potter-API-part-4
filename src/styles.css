@@ -14,5 +14,10 @@ input:-webkit-autofill:active {
 }
 
 input:-webkit-autofill {
-    -webkit-text-fill-color: white !important;
+  -webkit-text-fill-color: white !important;
+}
+
+.cdk-overlay-backdrop.cdk-overlay-backdrop-showing.dark-backdrop {
+  background: #000;
+  opacity: 0.75 !important;
 }

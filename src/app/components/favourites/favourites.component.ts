@@ -11,7 +11,6 @@ import { AuthenticationService } from '../../services/authentication.service'
 
 export class FavouritesComponent implements OnInit {
   mode : string = "local"
-  uploading : boolean = false
   ready : boolean = false
   localHouse : object = {}
   localHouseCharacters : object = {}
