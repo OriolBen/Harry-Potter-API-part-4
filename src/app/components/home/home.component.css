@@ -1,7 +1,11 @@
-p {
+#middle {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   text-align: center;
 }
 
-p:first-child {
-  margin-top: 10px;
+p:not(:last-child) {
+  margin-bottom: 25px;
 }
