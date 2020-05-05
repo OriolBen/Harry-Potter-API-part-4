@@ -38,9 +38,11 @@ export class DataService {
     this.authentication.afAuth.auth.onAuthStateChanged((user) => {
       if (user != null) {
         this.getFavouriteOnline().subscribe((data) => {
-          this.online.characters = Object.values(data[0])
+          if (data[0] != "") this.online.characters = Object.values(data[0])
+          else this.online.characters = []
           this.online.house = data[1]
-          this.online.spells = Object.values(data[2])
+          if (data[2] != "") this.online.spells = Object.values(data[2])
+          else this.online.spells = []
         })
       }
       this.updating = false
